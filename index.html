@@ -468,6 +468,260 @@
       </div>
     </div>
   </section>
+
+  <!--featured-->
+  <!-- Products Carousel Section -->
+<section id="productsCarousel" aria-label="Featured products carousel in repair shop" class="products-carousel-section">
+  <h2>Featured Products</h2>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <!-- Slide 1 -->
+      <article class="carousel-slide" tabindex="0">
+        <div class="slide-image-container">
+          <img src="images/Screenshot 2025-06-03 124816.png" alt="High quality replacement screens" />
+        </div>
+        <div class="slide-text-container">
+          <h3>Redmi Xiaomi</h3>
+          <p>14T orig complete lcd.</p>
+        </div>
+      </article>
+
+      <!-- Slide 2 -->
+      <article class="carousel-slide" tabindex="0">
+        <div class="slide-image-container">
+          <img src="images/Screenshot 2025-06-03 124743.png" alt="Reliable smartphone batteries" />
+        </div>
+        <div class="slide-text-container">
+          <h3>Samsung A36</h3>
+          <p>Orig framed complete LCD.</p>
+        </div>
+      </article>
+
+      <!-- Slide 3 -->
+      <article class="carousel-slide" tabindex="0">
+        <div class="slide-image-container">
+          <img src="images/Screenshot 2025-06-03 124703.png" alt="High precision repair tools" />
+        </div>
+        <div class="slide-text-container">
+          <h3>Tecno Camon 40 Pro</h3>
+          <p>Orig complete LCD.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="carousel-dots" role="tablist" aria-label="Product slide navigation">
+      <button class="dot active" role="tab" aria-selected="true" aria-controls="slide1" tabindex="0"></button>
+      <button class="dot" role="tab" aria-selected="false" aria-controls="slide2" tabindex="-1"></button>
+      <button class="dot" role="tab" aria-selected="false" aria-controls="slide3" tabindex="-1"></button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .products-carousel-section {
+    max-width: 1000px;
+    margin: 5rem auto;
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 28px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+  }
+  .products-carousel-section h2 {
+    color: #222;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  }
+
+  /* Carousel styles */
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);
+    color: white;
+    border-radius: 24px;
+    cursor: default;
+    outline: none;
+  }
+  .carousel-slide:nth-child(2) {
+    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+  }
+  .carousel-slide:nth-child(3) {
+    background: linear-gradient(135deg, #5577ee 0%, #82aaff 100%);
+  }
+  .carousel-slide:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 4px;
+  }
+
+  .slide-image-container {
+    flex: 1 1 45%;
+    max-width: 45%;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: inset 0 0 32px rgba(0,0,0,0.3);
+  }
+  .slide-image-container img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.6s ease-in-out;
+    display: block;
+  }
+  .carousel-slide:hover .slide-image-container img,
+  .carousel-slide:focus .slide-image-container img {
+    transform: scale(1.1);
+  }
+
+  .slide-text-container {
+    flex: 1 1 55%;
+    max-width: 55%;
+    box-sizing: border-box;
+  }
+  .slide-text-container h3 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 8px rgba(0,0,0,0.35);
+  }
+  .slide-text-container p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0,0,0,0.25);
+    margin: 0;
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+  }
+  .carousel-dots button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .carousel-dots button.active,
+  .carousel-dots button:hover,
+  .carousel-dots button:focus {
+    background-color: #ffd700;
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .carousel-slide {
+      flex-direction: column;
+      padding: 1rem 1rem 2rem;
+      min-height: auto;
+    }
+    .slide-image-container,
+    .slide-text-container {
+      max-width: 100% !important;
+      flex: 1 1 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
+    }
+    .slide-image-container img {
+      height: 240px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .slide-text-container h3 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    .slide-text-container p {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const track = document.querySelector('#productsCarousel .carousel-track');
+    const slides = Array.from(track.children);
+    const dots = Array.from(document.querySelectorAll('#productsCarousel .dot'));
+    let currentIndex = 0;
+    const slideCount = slides.length;
+
+    function updateSlidePosition(index) {
+      const distance = -index * 100;
+      track.style.transform = 'translateX(' + distance + '%)';
+      dots.forEach((dot, i) => {
+        dot.style.backgroundColor = i === index ? '#ffd700' : '#ccc';
+        dot.classList.toggle('active', i === index);
+        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        dot.tabIndex = i === index ? 0 : -1;
+      });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateSlidePosition(currentIndex);
+        resetAutoSlide();
+      });
+      dot.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          currentIndex = i;
+          updateSlidePosition(currentIndex);
+          resetAutoSlide();
+        }
+      });
+    });
+
+    function autoSlide() {
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlidePosition(currentIndex);
+    }
+
+    let autoSlideInterval = setInterval(autoSlide, 4000);
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(autoSlide, 4000);
+    }
+
+    // Initialize
+    updateSlidePosition(currentIndex);
+  })();
+</script>
     <!-- Job Application Section -->
   <section class="bg-gradient-to-br from-white to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
