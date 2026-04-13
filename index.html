@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Quickfix | Precision Phone Repair</title>
+  <title>Quickfix | Interactive Phone Repair & ALTECH Showcase</title>
   <!-- TailwindCSS + Modern Open Source Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Alpine.js for reactive components (lightweight, modern) -->
+  <!-- Alpine.js for reactive UI -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- GSAP for smooth scroll and subtle animations (open source) -->
+  <!-- GSAP for smooth scroll & micro-interactions -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <!-- Font Awesome 6 (Free, premium-style sharp icons) -->
+  <!-- Font Awesome 6 (sharp premium icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Swiper JS (modern touch slider, free) -->
+  <!-- Swiper JS (modern carousel) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <!-- AOS (Animate on Scroll) open source -->
+  <!-- AOS (Animate on Scroll) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Chart.js (Open source analytics / tech showcase) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Particles.js (lightweight open source background effect) -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -26,7 +30,6 @@
       background: #f8fafc;
       transition: background 0.3s ease, color 0.2s;
     }
-    /* dark mode overrides */
     body.dark {
       background: #0f172a;
       color: #e2e8f0;
@@ -37,21 +40,6 @@
     .dark .bg-gray-100 { background-color: #0f172a; }
     .dark .border-gray-300 { border-color: #334155; }
     .dark .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
-    .service-card-modern {
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(2px);
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: 1px solid rgba(59,130,246,0.1);
-    }
-    .dark .service-card-modern {
-      background: rgba(30,41,59,0.8);
-      border-color: rgba(59,130,246,0.3);
-    }
-    .service-card-modern:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 30px -12px rgba(0, 100, 255, 0.25);
-      border-color: #3b82f6;
-    }
     .glass-nav {
       background: rgba(255,255,255,0.92);
       backdrop-filter: blur(12px);
@@ -63,10 +51,7 @@
       background: linear-gradient(105deg, #2563eb 0%, #1d4ed8 100%);
       transition: all 0.2s ease;
     }
-    .btn-primary:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 20px -5px #1e3a8a;
-    }
+    .btn-primary:hover { transform: scale(1.02); box-shadow: 0 10px 20px -5px #1e3a8a; }
     .quickfix-hero {
       background: linear-gradient(107deg, #0f172a 0%, #1e293b 100%), url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
       background-blend-mode: overlay;
@@ -89,24 +74,64 @@
       transition: 0.2s;
     }
     .whatsapp-float:hover { transform: scale(1.08); background: #128C7E; }
-    .swiper-slide-shadow { display: none; }
-    .custom-swiper .swiper-pagination-bullet-active { background: #2563eb !important; }
-    .footer-link:hover { color: #3b82f6; transition: 0.2s; }
+    /* phone mockup animations */
+    @keyframes bounce {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.6); }
+    }
+    .animate-bounce-custom {
+      animation: bounce 1s infinite;
+    }
+    /* particles container */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .service-card-modern {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(2px);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(59,130,246,0.1);
+    }
+    .dark .service-card-modern {
+      background: rgba(30,41,59,0.8);
+    }
+    .service-card-modern:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0, 100, 255, 0.25);
+    }
     [data-aos] { pointer-events: none; }
     .aos-animate { pointer-events: auto; }
+    .phone-app-icon {
+      transition: transform 0.2s ease;
+    }
+    .phone-app-icon:hover {
+      transform: scale(1.08);
+    }
   </style>
 </head>
-<body class="antialiased" x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" 
+<body x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" 
       x-init="$watch('darkMode', val => { if(val) document.body.classList.add('dark'); else document.body.classList.remove('dark'); localStorage.setItem('theme', val ? 'dark' : 'light'); }); 
-               if(darkMode) document.body.classList.add('dark'); AOS.init({ duration: 700, once: true, offset: 20 });">
-  
-  <!-- Floating WhatsApp Button (Professional) -->
+               if(darkMode) document.body.classList.add('dark'); AOS.init({ duration: 700, once: true, offset: 20 }); 
+               // init particles
+               if(document.getElementById('particles-js')) {
+                 particlesJS('particles-js', {
+                   particles: { number: { value: 60, density: { enable: true, value_area: 800 } }, color: { value: '#3b82f6' }, shape: { type: 'circle' }, opacity: { value: 0.4, random: true }, size: { value: 3, random: true }, line_linked: { enable: true, distance: 150, color: '#3b82f6', opacity: 0.2, width: 1 }, move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out' } }, interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } } }, retina_detect: true
+                 });
+               }">
+
+  <!-- Floating WhatsApp Button -->
   <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp text-white text-3xl"></i>
   </a>
 
-  <!-- Modern Header with Glassmorphism -->
-  <header class="glass-nav sticky top-0 z-50 shadow-sm border-b border-gray-200 dark:border-gray-800 transition-all">
+  <!-- Glass Header -->
+  <header class="glass-nav sticky top-0 z-50 shadow-sm border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3">
         <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
@@ -115,33 +140,34 @@
         <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">QUICKFIX</span>
       </div>
       <nav class="hidden md:flex gap-8 text-sm font-semibold">
-        <a href="#services" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-microchip text-xs"></i> Services</a>
-        <a href="#featured" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-mobile-alt text-xs"></i> Products</a>
-        <a href="#locationSection" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-map-marker-alt text-xs"></i> Location</a>
-        <a href="#footer" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-info-circle text-xs"></i> About</a>
+        <a href="#services" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-microchip"></i> Services</a>
+        <a href="#featured" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-mobile-alt"></i> Products</a>
+        <a href="#interactivePhone" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-phone-alt"></i> Interactive Phone</a>
+        <a href="#locationSection" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> Location</a>
       </nav>
       <button @click="darkMode = !darkMode" class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition">
-        <i x-show="!darkMode" class="fas fa-moon text-gray-700 dark:text-gray-200"></i>
+        <i x-show="!darkMode" class="fas fa-moon text-gray-700"></i>
         <i x-show="darkMode" class="fas fa-sun text-yellow-400" style="display: none;" x-cloak></i>
       </button>
     </div>
   </header>
 
-  <!-- Hero / QuickFix Section (Premium visual) -->
+  <!-- Hero Section with Particles Background -->
   <section class="quickfix-hero text-white py-20 md:py-28 relative overflow-hidden">
+    <div id="particles-js" class="absolute inset-0"></div>
     <div class="absolute inset-0 bg-black/40"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-10 text-center" data-aos="fade-up">
       <h1 class="text-5xl md:text-7xl font-black tracking-tighter drop-shadow-2xl">QUICKFIX</h1>
       <p class="text-xl md:text-2xl font-medium mt-4 max-w-2xl mx-auto opacity-90">Same-day repair • Genuine parts • Expert technicians</p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a href="https://api.whatsapp.com/send?phone=254742313539" class="bg-white text-blue-700 font-bold px-8 py-3 rounded-full shadow-xl flex items-center gap-2 transition hover:scale-105"><i class="fab fa-whatsapp text-green-600 text-xl"></i> WhatsApp Support</a>
-        <a href="#letsfix" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white/10 transition flex items-center gap-2"><i class="fas fa-wrench"></i> Request Repair</a>
+        <a href="#letsfix" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white/10 transition"><i class="fas fa-wrench mr-2"></i>Request Repair</a>
       </div>
     </div>
   </section>
 
   <main class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
-    <!-- Services Section (Modern Grid) -->
+    <!-- Services Grid -->
     <section id="services" data-aos="fade-right">
       <div class="text-center mb-12">
         <span class="text-blue-600 font-semibold tracking-wide"><i class="fas fa-cog mr-1"></i> Premium Repairs</span>
@@ -149,45 +175,67 @@
         <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full mt-4"></div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="50">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-battery-full text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Battery Replacement</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">Genuine cells, water-resistant sealing, 6-month warranty.</p>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-battery-full text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Battery Replacement</h3><p class="text-gray-600 dark:text-gray-300 mt-2">Genuine cells, water-resistant sealing, 6-month warranty.</p></div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-mobile-alt text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Screen Repair</h3><p class="text-gray-600 dark:text-gray-300 mt-2">OLED/IPS, glass-only or full assembly, 45 min express.</p></div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-tint text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Water Damage Fix</h3><p class="text-gray-600 dark:text-gray-300 mt-2">Ultrasonic cleaning, corrosion treatment, board-level repair.</p></div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-code text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Software Recovery</h3><p class="text-gray-600 dark:text-gray-300 mt-2">iOS/Android, boot loops, data recovery, malware removal.</p></div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-microphone-alt text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Audio & Mic Repair</h3><p class="text-gray-600 dark:text-gray-300 mt-2">Speaker crackling, earpiece, charging port flex.</p></div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-wifi text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold">Connectivity Issues</h3><p class="text-gray-600 dark:text-gray-300 mt-2">WiFi/Bluetooth IC, network antenna, signal boosting.</p></div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE PHONE MOCKUP + Developer Showcase Section -->
+    <section id="interactivePhone" class="mt-24" data-aos="zoom-in-up">
+      <div class="text-center mb-10">
+        <span class="text-blue-600 font-semibold"><i class="fas fa-mobile-android-alt"></i> Interactive Experience</span>
+        <h2 class="text-4xl font-extrabold dark:text-white">Clickable Phone | ALTECH Dev Studio</h2>
+      </div>
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
+        <!-- Premium Phone Mockup (from Uiverse, fully interactive & clickable) -->
+        <div class="group relative flex justify-center h-[350px] w-[180px] border-[3px] border-gray-800 rounded-[32px] bg-gray-900 shadow-xl ring-1 ring-gray-900/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 select-none">
+          <div class="absolute inset-0 rounded-[30px] border border-white/10 pointer-events-none"></div>
+          <div class="relative h-full w-full overflow-hidden rounded-[28px] bg-black">
+            <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 transition-transform duration-700 group-hover:scale-110"></div>
+            <div class="absolute top-0 right-0 w-[150px] h-[150px] bg-purple-600/20 blur-[40px] rounded-full mix-blend-screen transition-all duration-700 group-hover:translate-x-4 group-hover:-translate-y-4"></div>
+            <div class="absolute bottom-0 left-0 w-[150px] h-[150px] bg-cyan-600/20 blur-[40px] rounded-full mix-blend-screen transition-all duration-700 group-hover:-translate-x-4 group-hover:translate-y-4"></div>
+            <div class="absolute top-1 w-full px-4 py-1 flex justify-between items-center z-10 text-white text-[8px] font-medium opacity-80"><span>9:41</span><div class="flex gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-2.5 h-2.5"><path d="M3 20h18V2L3 20z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5"><path fill-rule="evenodd" d="M3 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H3.75a.75.75 0 01-.75-.75V5.25zm17.5 4.5a.75.75 0 01.75.75v3a.75.75 0 01-.75.75h-1.5v-4.5h1.5z" clip-rule="evenodd"></path></svg></div></div>
+            <div class="absolute inset-0 flex flex-col items-center pt-12 transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:-translate-y-4 group-hover:scale-95 group-hover:pointer-events-none z-10"><div class="flex flex-col items-center text-white/90"><span class="text-[8px] font-semibold tracking-wider">TUESDAY, 10 DEC</span><span class="text-6xl font-thin tracking-tighter -mt-2">09:41</span></div><div class="absolute bottom-6 w-full px-6 flex justify-between"><div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M11.412 15.655L9.75 21.75l3.745-4.012M9.257 13.5H3.75l2.659-2.849m2.048-2.194L14.25 2.25 12 10.5h8.25l-4.707 5.043M8.457 8.457L3 3m5.457 5.457l7.086 7.086m0 0L21 21"></path></svg></div><div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"></path></svg></div></div><div class="absolute bottom-2 w-[40%] h-[3px] bg-white/50 rounded-full"></div></div>
+            <!-- Interactive Apps inside phone (hover state) -->
+            <div class="absolute inset-0 pt-10 pb-4 px-3 flex flex-col justify-between opacity-0 scale-105 translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 z-0">
+              <div class="grid grid-cols-4 gap-x-2 gap-y-4 place-items-center mt-2">
+                <div class="phone-app-icon flex flex-col items-center gap-1 cursor-pointer" onclick="window.open('https://wa.me/254742313539', '_blank')"><div class="w-9 h-9 rounded-xl bg-green-500 shadow-md flex items-center justify-center text-white"><i class="fab fa-whatsapp text-lg"></i></div><span class="text-[8px] text-white">WhatsApp</span></div>
+                <div class="phone-app-icon flex flex-col items-center gap-1 cursor-pointer" onclick="window.open('tel:+254742313539')"><div class="w-9 h-9 rounded-xl bg-blue-500 shadow-md flex items-center justify-center text-white"><i class="fas fa-phone-alt text-lg"></i></div><span class="text-[8px] text-white">Call</span></div>
+                <div class="phone-app-icon flex flex-col items-center gap-1 cursor-pointer" onclick="document.getElementById('letsfix').scrollIntoView({behavior:'smooth'})"><div class="w-9 h-9 rounded-xl bg-purple-500 shadow-md flex items-center justify-center text-white"><i class="fas fa-tools text-lg"></i></div><span class="text-[8px] text-white">Repair</span></div>
+                <div class="phone-app-icon flex flex-col items-center gap-1 cursor-pointer" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Munyu+Road+Nairobi', '_blank')"><div class="w-9 h-9 rounded-xl bg-red-400 shadow-md flex items-center justify-center text-white"><i class="fas fa-map-marker-alt text-lg"></i></div><span class="text-[8px] text-white">Maps</span></div>
+              </div>
+              <div class="w-full h-14 bg-white/20 backdrop-blur-xl border border-white/10 rounded-[20px] flex items-center justify-evenly px-2 mb-2 shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500 shadow-md flex items-center justify-center text-white"><i class="fab fa-instagram text-xl"></i></div>
+                <div class="w-10 h-10 rounded-xl bg-indigo-500 shadow-md flex items-center justify-center text-white"><i class="fab fa-twitter text-xl"></i></div>
+                <div class="w-10 h-10 rounded-xl bg-gray-700 shadow-md flex items-center justify-center text-white"><i class="fab fa-github text-xl"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="group/notch absolute top-[10px] z-30 h-5 w-16 rounded-full bg-black transition-all duration-300 hover:w-[150px] hover:h-12 hover:rounded-[18px] flex items-center justify-between px-2 overflow-hidden cursor-pointer shadow-lg border border-white/5">
+            <div class="opacity-0 group-hover/notch:opacity-100 transition-opacity duration-300 delay-100 flex items-center gap-2 w-full text-white text-[8px]"><div class="h-8 w-8 rounded-lg bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center"><i class="fas fa-music text-white"></i></div><div class="flex flex-col leading-tight whitespace-nowrap"><span class="font-semibold text-[9px]">ALTECH Tune</span><span class="text-gray-400 text-[8px]">Repair Pro</span></div><div class="flex items-end gap-[1.5px] h-3 ml-auto pr-1"><div class="w-[2px] bg-green-400 h-full animate-bounce-custom"></div><div class="w-[2px] bg-green-400 h-2/3 animate-bounce-custom" style="animation-delay:0.2s"></div><div class="w-[2px] bg-green-400 h-1/2 animate-bounce-custom" style="animation-delay:0.5s"></div></div></div>
+          </div>
+          <span class="absolute -right-[4px] top-16 h-10 w-[3px] rounded-r-md bg-gray-700"></span><span class="absolute -left-[4px] top-12 h-6 w-[3px] rounded-l-md bg-gray-700"></span><span class="absolute -left-[4px] top-20 h-10 w-[3px] rounded-l-md bg-gray-700"></span>
         </div>
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-mobile-alt text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Screen Repair</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">OLED/IPS, glass-only or full assembly, 45 min express.</p>
-        </div>
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="150">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-tint text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Water Damage Fix</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">Ultrasonic cleaning, corrosion treatment, board-level repair.</p>
-        </div>
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-code text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Software Recovery</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">iOS/Android, boot loops, data recovery, malware removal.</p>
-        </div>
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="250">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-microphone-alt text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Audio & Mic Repair</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">Speaker crackling, earpiece, charging port flex.</p>
-        </div>
-        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="300">
-          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-wifi text-3xl text-blue-600"></i></div>
-          <h3 class="text-2xl font-bold">Connectivity Issues</h3>
-          <p class="text-gray-600 dark:text-gray-300 mt-2">WiFi/Bluetooth IC, network antenna, signal boosting.</p>
+
+        <!-- Developer & Analytics Info -->
+        <div class="max-w-md bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl" data-aos="fade-left">
+          <div class="flex items-center gap-3 border-b pb-4 border-gray-200 dark:border-gray-700"><i class="fab fa-algolia text-3xl text-blue-500"></i><h3 class="text-2xl font-bold">ALTECH Developers</h3></div>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">Innovative software solutions & phone repair integration. Click the phone apps to call, WhatsApp, or locate our shop.</p>
+          <div class="mt-4 flex gap-3"><span class="bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded-full text-xs"><i class="fas fa-chart-line"></i> Real-time Stats</span><span class="bg-green-100 dark:bg-green-900/40 px-3 py-1 rounded-full text-xs"><i class="fas fa-microchip"></i> IoT Ready</span></div>
+          <!-- Chart.js mini analytics -->
+          <canvas id="repairStatsChart" width="300" height="150" class="mt-5"></canvas>
+          <p class="text-xs text-center text-gray-500 mt-2">Monthly repairs trend (open source chart)</p>
         </div>
       </div>
     </section>
 
-    <!-- Featured Products Carousel (Swiper modern) -->
+    <!-- Swiper Carousel Featured Products -->
     <section id="featured" class="mt-24" data-aos="fade-up">
-      <div class="text-center mb-10">
-        <span class="text-blue-600 font-semibold"><i class="fas fa-box-open"></i> Premium Components</span>
-        <h2 class="text-4xl font-extrabold dark:text-white">Genuine & OEM Parts</h2>
-      </div>
+      <div class="text-center mb-10"><span class="text-blue-600 font-semibold"><i class="fas fa-box-open"></i> Premium Components</span><h2 class="text-4xl font-extrabold dark:text-white">Genuine & OEM Parts</h2></div>
       <div class="swiper custom-swiper rounded-2xl overflow-hidden shadow-2xl">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/1D976C/white?text=Xiaomi+14T+LCD" alt="Xiaomi LCD"></div>
@@ -195,106 +243,36 @@
           <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/5577ee/white?text=Tecno+Camon+40+Pro" alt="Tecno"></div>
           <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/FF6B6B/white?text=Villaon+V40+Series" alt="Villaon"></div>
           <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/2C3E50/white?text=Xiaomi+ML10+5G+LCD" alt="Xiaomi ML10"></div>
-          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/3498db/white?text=Network+Cables+Stock" alt="Cables"></div>
         </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev !text-white !bg-black/30 !rounded-full !w-10 !h-10"></div>
-        <div class="swiper-button-next !text-white !bg-black/30 !rounded-full !w-10 !h-10"></div>
+        <div class="swiper-pagination"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div>
       </div>
     </section>
 
-    <!-- LET'S FIX (Repair Request Form) -->
+    <!-- LET'S FIX Form -->
     <section id="letsfix" class="mt-24 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12" data-aos="flip-up">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center mb-8">
-          <i class="fas fa-clipboard-list text-4xl text-blue-600"></i>
-          <h2 class="text-3xl md:text-4xl font-black mt-3 dark:text-white">Let's Fix Your Device</h2>
-          <p class="text-gray-500 dark:text-gray-300">Submit details and our technician will contact you within 20 minutes.</p>
-        </div>
-        <form id="repairRequestForm" class="space-y-6">
-          <div class="grid md:grid-cols-2 gap-5">
-            <div><label class="block font-semibold mb-1 dark:text-gray-200">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500"></div>
-            <div><label class="block font-semibold mb-1 dark:text-gray-200">Location</label><input type="text" id="location" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
-            <div><label class="block font-semibold mb-1 dark:text-gray-200">Problem / Part</label><input type="text" id="problem" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
-            <div><label class="block font-semibold mb-1 dark:text-gray-200">WhatsApp Number</label><input type="tel" id="phoneNumber" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
-          </div>
-          <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Send Repair Request</button>
-        </form>
-      </div>
+      <div class="max-w-3xl mx-auto text-center"><i class="fas fa-clipboard-list text-4xl text-blue-600"></i><h2 class="text-3xl md:text-4xl font-black mt-3 dark:text-white">Let's Fix Your Device</h2><p class="text-gray-500 dark:text-gray-300">Submit details, technician will contact you within 20 min.</p></div>
+      <form id="repairRequestForm" class="mt-8 space-y-6 max-w-2xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-5"><input type="text" id="fullName" placeholder="Full Name" required class="border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"><input type="text" id="location" placeholder="Location" required class="border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"><input type="text" id="problem" placeholder="Problem / Part needed" required class="border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"><input type="tel" id="phoneNumber" placeholder="WhatsApp Number" required class="border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
+        <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Send Repair Request</button>
+      </form>
     </section>
 
-    <!-- Map Location with nicer style -->
-    <section id="locationSection" class="mt-24" data-aos="fade-left">
-      <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg">
-        <div class="p-6 text-center border-b dark:border-gray-700"><i class="fas fa-map-pin text-blue-600 mr-2"></i><span class="font-bold"> Nairobi CBD • Munyu Road</span></div>
-        <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </section>
+    <!-- Google Map Location -->
+    <section id="locationSection" class="mt-24" data-aos="fade-left"><div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg"><div class="p-4 text-center border-b"><i class="fas fa-map-pin text-blue-600 mr-2"></i><span class="font-bold">Munyu Road, Nairobi CBD</span></div><iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></section>
   </main>
 
-  <!-- Modern Footer (Redesigned) -->
-  <footer id="footer" class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16">
-    <div class="max-w-7xl mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-        <div class="col-span-1 md:col-span-1">
-          <div class="flex items-center space-x-2"><div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"><i class="fas fa-screwdriver-wrench text-white"></i></div><span class="text-2xl font-black">QUICKFIX</span></div>
-          <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm">Professional phone repair with certified parts, rapid turnaround, and customer-first service in Nairobi.</p>
-          <div class="flex gap-4 mt-5"><i class="fab fa-twitter text-gray-400 hover:text-blue-500 cursor-pointer"></i><i class="fab fa-instagram text-gray-400 hover:text-pink-500 cursor-pointer"></i><i class="fab fa-facebook text-gray-400 hover:text-blue-600 cursor-pointer"></i></div>
-        </div>
-        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Services</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li>Screen Replacement</li><li>Battery Service</li><li>Water Damage</li><li>Board Repair</li></ul></div>
-        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Support</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><i class="fas fa-phone-alt mr-2 w-4"></i> +254 742 313 539</li><li><i class="fab fa-whatsapp mr-2 text-green-500"></i> +254 716 868 013</li><li><i class="far fa-envelope mr-2"></i> repair@quickfix.co.ke</li></ul></div>
-        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Location</h4><address class="not-italic text-gray-500 dark:text-gray-400 text-sm">Munyu Road, Nairobi CBD<br>Open Mon-Sat: 9am - 7pm<br>Sunday: Closed</address></div>
-      </div>
-      <div class="border-t border-gray-200 dark:border-gray-800 mt-12 pt-6 text-center text-gray-400 text-sm flex flex-wrap justify-between">
-        <span>© 2025 Quickfix — Product of ALTECH software developers</span>
-        <span class="space-x-4"><a href="#" class="hover:text-blue-500">Privacy</a><a href="#" class="hover:text-blue-500">Terms</a><a href="#" class="hover:text-blue-500">Cookies</a></span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Developer Contact Badge -->
-  <a id="devContact" class="fixed z-50 bottom-6 left-6 bg-gray-800/80 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-full flex items-center gap-2 hover:bg-gray-900" href="https://api.whatsapp.com/send?phone=254706389206" target="_blank"><i class="fab fa-codepen"></i> Dev Support</a>
+  <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16"><div class="max-w-7xl mx-auto px-6 py-12 text-center text-gray-500">© 2025 Quickfix — Product of <span class="font-bold text-blue-600">ALTECH Software Developers</span> | Interactive Phone + Analytics</div></footer>
+  <a class="fixed bottom-6 left-6 bg-gray-800/80 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-full flex items-center gap-2" href="https://api.whatsapp.com/send?phone=254706389206" target="_blank"><i class="fab fa-codepen"></i> Dev Support</a>
 
   <script>
-    // Initialize Swiper (modern carousel)
-    const swiper = new Swiper('.custom-swiper', {
-      loop: true,
-      autoplay: { delay: 4000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      effect: 'slide',
-      speed: 800,
-    });
-
-    // GSAP scroll animations + AOS ready
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.quickfix-hero h1', { duration: 1, y: 40, opacity: 0, ease: "power3.out" });
-    gsap.from('.quickfix-hero p', { duration: 1, y: 20, opacity: 0, delay: 0.2 });
-    gsap.from('.quickfix-hero .flex', { duration: 0.8, scale: 0.9, opacity: 0, delay: 0.4 });
-
-    // Repair form WhatsApp handler
-    document.getElementById("repairRequestForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("fullName").value.trim();
-      const location = document.getElementById("location").value.trim();
-      const problem = document.getElementById("problem").value.trim();
-      const phone = document.getElementById("phoneNumber").value.trim();
-      if (!name || !location || !problem || !phone) { alert("Please fill all fields"); return; }
-      const message = `🔧 *NEW REPAIR REQUEST* 🔧\n\n👤 Name: ${name}\n📍 Location: ${location}\n⚠️ Issue: ${problem}\n📞 Contact: ${phone}`;
-      const waUrl = `https://wa.me/254742313539?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, '_blank');
-      // optional reset
-      document.getElementById("repairRequestForm").reset();
-    });
-
-    // Theme persistence handled by Alpine but additional fix for dark images
-    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    const swiper = new Swiper('.custom-swiper', { loop: true, autoplay: { delay: 4000 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } });
+    document.getElementById("repairRequestForm").addEventListener("submit", function(e) { e.preventDefault(); const name=document.getElementById("fullName").value, loc=document.getElementById("location").value, prob=document.getElementById("problem").value, phone=document.getElementById("phoneNumber").value; if(!name||!loc||!prob||!phone) return alert("Fill all fields"); const msg=`🔧 REPAIR REQUEST\nName: ${name}\nLocation: ${loc}\nIssue: ${prob}\nContact: ${phone}`; window.open(`https://wa.me/254742313539?text=${encodeURIComponent(msg)}`,'_blank'); this.reset(); });
+    // Chart.js integration
+    const ctx = document.getElementById('repairStatsChart').getContext('2d');
+    new Chart(ctx, { type: 'line', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], datasets: [{ label: 'Repairs Completed', data: [42, 58, 67, 83, 97, 112], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: document.body.classList.contains('dark') ? '#cbd5e1' : '#334155' } } } } });
+    gsap.registerPlugin(ScrollTrigger); gsap.from('.quickfix-hero h1', { duration: 1, y: 40, opacity: 0 });
     AOS.refresh();
   </script>
-  <style>
-    [x-cloak] { display: none !important; }
-    .custom-swiper .swiper-button-prev, .custom-swiper .swiper-button-next { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 40px; width: 42px; height: 42px; }
-    .custom-swiper .swiper-button-prev:after, .custom-swiper .swiper-button-next:after { font-size: 20px; font-weight: bold; }
-  </style>
+  <style>.custom-swiper .swiper-button-prev, .custom-swiper .swiper-button-next { background: rgba(0,0,0,0.5); border-radius: 40px; width: 42px; height: 42px; } .animate-bounce-custom { animation: bounce 1s infinite; } @keyframes bounce { 0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.6)} } [x-cloak] { display: none; }</style>
 </body>
- </html>
+                                                                                                                                               </html>
