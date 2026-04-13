@@ -1,1023 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Phone Repair Shop</title>
- <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightswind@1.0.1/src/lightswind.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-     <link rel="stylesheet" href="styles.css">
-     <link rel="Icon" href="images/Artboard_6-removebg-preview__2_-removebg-preview.png" type="image/png">
-
-<style>
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fa;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    background: #2e3842;
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* Navigation */
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    padding-bottom: 4px;
-    transition: border-color 0.3s;
-  }
-  nav a:hover, nav a.active {
-    border-color: #ffd700; /* gold highlight */
-  }
-
-  main {
-    flex: 1;
-    max-width: 960px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.07);
-    padding: 2rem 3rem;
-  }
-  h2 {
-    margin-top: 0;
-    color: #222;
-    margin-bottom: 1rem;
-  }
-
-  /* Homepage - Services Section */
-  #homePage {
-    display: block;
-  }
-  .services {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-  }
-  .service-card {
-    background: #e9f0ff;
-    border-radius: 12px;
-    flex: 1 1 250px;
-    max-width: 280px;
-    padding: 1.8rem 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,123,255,0.15);
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0,123,255,0.25);
-  }
-  .service-icon {
-    font-size: 3.4rem;
-    color: #007bff;
-    margin-bottom: 0.7rem;
-  }
-  .service-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #004a99;
-    margin-bottom: 0.6rem;
-  }
-  .service-desc {
-    font-size: 1rem;
-    color: #333;
-  }
-
-  /* New QUICKFIX Section */
-  
-  #quickFixSection {
-    margin-top: 3rem;
-    border-radius: 12px;
-    color: white;
-    text-align: center;
-    padding: 5rem 1.5rem;
-    background-image: url('images/download1.png');
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.45);
-  }
-  #quickFixSection h2 {
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    margin: 10PX;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-    color: #8fa4dd;
-    text-align: center;
-  }
-  .whatsapp-button {
-    background-color: #25D366;
-    color: white;
-    padding: 7px 10px;
-    border: none;
-    border-radius: 60px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-
-  /* Login Form */
-  #loginPanel {
-    max-width: 400px;
-    margin: 4rem auto 0 auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    padding: 2rem 2.5rem;
-    display: none;
-  }
-  #loginPanel h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  .form-group {
-    margin-bottom: 1.2rem;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-    color: #444;
-  }
-  input[type="text"], input[type="password"], input[type="tel"] {
-    width: 100%;
-    padding: 0.6rem 0.9rem;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    transition: border-color 0.3s;
-  }
-  input[type="text"]:focus, input[type="password"]:focus, input[type="tel"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  button {
-    background: #007bff;
-    border: none;
-    color: white;
-    font-weight: 700;
-    padding: 0.75rem 1.2rem;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  button:hover {
-    background: #0056b3;
-  }
-  .error {
-    color: #d93025;
-    font-weight: 600;
-    margin-top: -0.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .success {
-    color: #188038;
-    font-weight: 600;
-    margin-top: -0.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .login-hint {
-    font-size: 0.85rem;
-    color: #555;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-
-  /* Admin Panel */
-  #adminPanel {
-    display: none;
-  }
-  #logoutBtn {
-    background: #dc3545;
-    margin-top: 1rem;
-    width: auto;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 6px;
-  }
-  form#addClientForm {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  form#addClientForm > * {
-    flex: 1 1 200px;
-  }
-  form#addClientForm button {
-    max-width: 250px;
-    align-self: flex-end;
-  }
-
-  /* Client List */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1rem;
-  }
-  th, td {
-    padding: 0.9rem 1.2rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  th {
-    background: #007bff;
-    color: white;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-  }
-  tr:hover {
-    background-color: #f1f8ff;
-  }
-  .btn-remove {
-    background: #dc3545;
-    border: none;
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-  }
-  .btn-remove:hover {
-    background: #a82424;
-  }
-  .btn-whatsapp {
-    background: #25D366;
-    border: none;
-    color: white;
-    padding: 0.3rem 0.9rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-    margin-left: 0.5rem;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-  }
-  .btn-whatsapp:hover {
-    background: #128C7E;
-  }
-  .whatsapp-icon {
-    margin-right: 0.3rem;
-    font-size: 1.2rem;
-  }
-
-  footer {
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #888;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    main {
-      margin: 1rem;
-      padding: 1.5rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Quickfix | Precision Phone Repair</title>
+  <!-- TailwindCSS + Modern Open Source Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js for reactive components (lightweight, modern) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- GSAP for smooth scroll and subtle animations (open source) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Font Awesome 6 (Free, premium-style sharp icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper JS (modern touch slider, free) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- AOS (Animate on Scroll) open source -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: #f8fafc;
+      transition: background 0.3s ease, color 0.2s;
     }
-    form#addClientForm {
-      flex-direction: column;
+    /* dark mode overrides */
+    body.dark {
+      background: #0f172a;
+      color: #e2e8f0;
     }
-    form#addClientForm button {
-      max-width: 100%;
+    .dark .bg-white { background-color: #1e293b !important; }
+    .dark .text-gray-800 { color: #f1f5f9 !important; }
+    .dark .text-gray-600 { color: #cbd5e1 !important; }
+    .dark .bg-gray-100 { background-color: #0f172a; }
+    .dark .border-gray-300 { border-color: #334155; }
+    .dark .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
+    .service-card-modern {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(2px);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(59,130,246,0.1);
     }
-    table, th, td {
-      font-size: 0.9rem;
+    .dark .service-card-modern {
+      background: rgba(30,41,59,0.8);
+      border-color: rgba(59,130,246,0.3);
     }
-    .services {
-      flex-direction: column;
-      gap: 1.5rem;
+    .service-card-modern:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0, 100, 255, 0.25);
+      border-color: #3b82f6;
     }
-    #quickFixSection {
-      padding: 3rem 1rem;
-      font-size: 1.5rem;
+    .glass-nav {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
     }
-  }
-    
-        /* -- External Social Link CSS Styles -- */
-        #source-link {
-            top: 120px;
-        }
-
-        #source-link>i {
-            color: rgb(94, 106, 210);
-        }
-
-        #yt-link {
-            top: 65px;
-        }
-
-        #yt-link>i {
-            color: rgb(219, 31, 106);
-
-        }
-
-        #Fund-link {
-            top: 10px;
-        }
-
-        #Fund-link>i {
-            color: rgb(255, 251, 0);
-
-        }
-
-        .meta-link {
-            align-items: center;
-            backdrop-filter: blur(3px);
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            display: inline-flex;
-            gap: 5px;
-            right: 10px;
-            padding: 10px 20px;
-            position: fixed;
-            text-decoration: none;
-            transition: background-color 600ms, border-color 600ms;
-            z-index: 10000;
-        }
-
-        .meta-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .meta-link>i,
-        .meta-link>span {
-            height: 20px;
-            line-height: 20px;
-        }
-
-        .meta-link>span {
-            color: black;
-            font-family: "Rubik", sans-serif;
-            transition: color 600ms;
-        }
-    
-</style>
+    .dark .glass-nav {
+      background: rgba(15,23,42,0.92);
+    }
+    .btn-primary {
+      background: linear-gradient(105deg, #2563eb 0%, #1d4ed8 100%);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px -5px #1e3a8a;
+    }
+    .quickfix-hero {
+      background: linear-gradient(107deg, #0f172a 0%, #1e293b 100%), url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-position: center 30%;
+    }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      background: #25D366;
+      width: 58px;
+      height: 58px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(37,211,102,0.4);
+      transition: 0.2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); background: #128C7E; }
+    .swiper-slide-shadow { display: none; }
+    .custom-swiper .swiper-pagination-bullet-active { background: #2563eb !important; }
+    .footer-link:hover { color: #3b82f6; transition: 0.2s; }
+    [data-aos] { pointer-events: none; }
+    .aos-animate { pointer-events: auto; }
+  </style>
 </head>
-<body>
-
-<header>
+<body class="antialiased" x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }" 
+      x-init="$watch('darkMode', val => { if(val) document.body.classList.add('dark'); else document.body.classList.remove('dark'); localStorage.setItem('theme', val ? 'dark' : 'light'); }); 
+               if(darkMode) document.body.classList.add('dark'); AOS.init({ duration: 700, once: true, offset: 20 });">
   
-  Phone Repair Shop
-  <nav>
-    <a href="#homepage" id="navHome" class="active" aria-current="page">Services</a>
-    <a href="#locationSection" class="menu-item" id="navlocationsection">Location</a>
-    <a href="#footer"class="menu-item" id="navAdmin">About</a>
-  </nav>
-</header>
+  <!-- Floating WhatsApp Button (Professional) -->
+  <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp text-white text-3xl"></i>
+  </a>
 
-      
-    
-  </div>
-<!-- QUICKFIX Section -->
-  <section id="quickFixSection" aria-label="Quickfix service highlight">
-    <h2 class="text-7xl font-extrabold text-black tracking-tight fade-in-delay">QUICKFIX</h2>
-    <div class="cta-button">
-      <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="whatsapp-button">
-        Chat With Us on WhatsApp
-      </a>
+  <!-- Modern Header with Glassmorphism -->
+  <header class="glass-nav sticky top-0 z-50 shadow-sm border-b border-gray-200 dark:border-gray-800 transition-all">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md">
+          <i class="fas fa-tools text-white text-lg"></i>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">QUICKFIX</span>
       </div>
-      
-  </section>
-
-<section class="showcase-section">
-  <h2>Our Work</h2>
-
-  <!-- Before & After Slider Card -->
-  <div class="slider-card">
-    <div class="slider-images" id="sliderImages">
-      <img src="images/before1.png" alt="Before Repair">
-      <img src="images/after.png" alt="After Repair">
+      <nav class="hidden md:flex gap-8 text-sm font-semibold">
+        <a href="#services" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-microchip text-xs"></i> Services</a>
+        <a href="#featured" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-mobile-alt text-xs"></i> Products</a>
+        <a href="#locationSection" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-map-marker-alt text-xs"></i> Location</a>
+        <a href="#footer" class="hover:text-blue-600 transition flex items-center gap-1"><i class="fas fa-info-circle text-xs"></i> About</a>
+      </nav>
+      <button @click="darkMode = !darkMode" class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition">
+        <i x-show="!darkMode" class="fas fa-moon text-gray-700 dark:text-gray-200"></i>
+        <i x-show="darkMode" class="fas fa-sun text-yellow-400" style="display: none;" x-cloak></i>
+      </button>
     </div>
-  </div>
-</section>
+  </header>
 
-
-<main>
-  
-  
-  <!-- Homepage for Users -->
-  <section id="homepage" tabindex="0" aria-label="Services offered by the phone repair shop"
-  style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 100vh; padding: 40px; background-color: #f9f9f9;">
-  
-    <h2 class=" text-3xl text-align-center font-bold">Our Services</h2>
-    <div class="services">
-      <div class="service-card" tabindex="0" aria-labelledby="service1-title" aria-describedby="service1-desc">
-        <div class="service-icon" aria-hidden="true">🔋</div>
-        <h3 id="service1-title" class="service-title">Battery Replacement</h3>
-        <p id="service1-desc" class="service-desc">Quick and reliable battery replacement for all phone brands.</p>
-      </div>
-      <div class="service-card" tabindex="0" aria-labelledby="service2-title" aria-describedby="service2-desc">
-        <div class="service-icon" aria-hidden="true">📱</div>
-        <h3 id="service2-title" class="service-title">Screen Repair</h3>
-        <p id="service2-desc" class="service-desc">High-quality screen repair and replacement, including cracked and shattered glass.</p>
-      </div>
-      <div class="service-card" tabindex="0" aria-labelledby="service3-title" aria-describedby="service3-desc">
-        <div class="service-icon" aria-hidden="true">💧</div>
-        <h3 id="service3-title" class="service-title">Water Damage Fix</h3>
-        <p id="service3-desc" class="service-desc">Professional repair service to fix water damaged phones.</p>
-      </div>
-      <div class="service-card" tabindex="0" aria-labelledby="service4-title" aria-describedby="service4-desc">
-        <div class="service-icon" aria-hidden="true">🔧</div>
-        <h3 id="service4-title" class="service-title">Software Troubleshooting</h3>
-        <p id="service4-desc" class="service-desc">Resolve software issues, system errors, and phone optimizations.</p>
-      </div>
-      <div class="service-card" tabindex="0" aria-labelledby="service5-title" aria-describedby="service5-desc">
-        <div class="service-icon" aria-hidden="true">🔇</div>
-        <h3 id="service5-title" class="service-title">Speaker & Microphone Repair</h3>
-        <p id="service5-desc" class="service-desc">Fixes for sound problems including microphone and speaker replacements.</p>
-      </div>
-      <div class="service-card" tabindex="0" aria-labelledby="service6-title" aria-describedby="service6-desc">
-        <div class="service-icon" aria-hidden="true">📶</div>
-        <h3 id="service6-title" class="service-title">Connectivity Issues</h3>
-        <p id="service6-desc" class="service-desc">Repair Wi-Fi, Bluetooth, and network connectivity problems.</p>
+  <!-- Hero / QuickFix Section (Premium visual) -->
+  <section class="quickfix-hero text-white py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10 text-center" data-aos="fade-up">
+      <h1 class="text-5xl md:text-7xl font-black tracking-tighter drop-shadow-2xl">QUICKFIX</h1>
+      <p class="text-xl md:text-2xl font-medium mt-4 max-w-2xl mx-auto opacity-90">Same-day repair • Genuine parts • Expert technicians</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="https://api.whatsapp.com/send?phone=254742313539" class="bg-white text-blue-700 font-bold px-8 py-3 rounded-full shadow-xl flex items-center gap-2 transition hover:scale-105"><i class="fab fa-whatsapp text-green-600 text-xl"></i> WhatsApp Support</a>
+        <a href="#letsfix" class="bg-transparent border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white/10 transition flex items-center gap-2"><i class="fas fa-wrench"></i> Request Repair</a>
       </div>
     </div>
   </section>
-  <!--featured-->
-  <!-- Products Carousel Section -->
-<section id="productsCarousel" aria-label="Featured products carousel in repair shop" class="products-carousel-section">
-  <h2>Featured Products</h2>
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <!-- Slide 1 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/Screenshot 2025-06-03 124816.png" alt="High quality replacement screens" />
+
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
+    <!-- Services Section (Modern Grid) -->
+    <section id="services" data-aos="fade-right">
+      <div class="text-center mb-12">
+        <span class="text-blue-600 font-semibold tracking-wide"><i class="fas fa-cog mr-1"></i> Premium Repairs</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mt-2">Expert Services</h2>
+        <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="50">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-battery-full text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Battery Replacement</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">Genuine cells, water-resistant sealing, 6-month warranty.</p>
         </div>
-        <div class="slide-text-container">
-          <h3>Redmi Xiaomi</h3>
-          <p>14T orig complete lcd.</p>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="100">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-mobile-alt text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Screen Repair</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">OLED/IPS, glass-only or full assembly, 45 min express.</p>
         </div>
-      </article>
-
-      <!-- Slide 2 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/Screenshot 2025-06-03 124743.png" alt="Reliable smartphone batteries" />
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="150">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-tint text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Water Damage Fix</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">Ultrasonic cleaning, corrosion treatment, board-level repair.</p>
         </div>
-        <div class="slide-text-container">
-          <h3>Samsung A36</h3>
-          <p>Orig framed complete LCD.</p>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="200">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-code text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Software Recovery</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">iOS/Android, boot loops, data recovery, malware removal.</p>
         </div>
-      </article>
-
-      <!-- Slide 3 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/Screenshot 2025-06-03 124703.png" alt="High precision repair tools" />
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="250">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-microphone-alt text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Audio & Mic Repair</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">Speaker crackling, earpiece, charging port flex.</p>
         </div>
-        <div class="slide-text-container">
-          <h3>Tecno Camon 40 Pro</h3>
-          <p>Orig complete LCD.</p>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md" data-aos="zoom-in" data-aos-delay="300">
+          <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-wifi text-3xl text-blue-600"></i></div>
+          <h3 class="text-2xl font-bold">Connectivity Issues</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">WiFi/Bluetooth IC, network antenna, signal boosting.</p>
         </div>
-      </article>
-
-       <!-- Slide 4-->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/slide 4.png" alt="High precision repair tools" />
-        </div>
-        <div class="slide-text-container">
-          <h3>New arrival</h3>
-          <p>VILLAON V30 R'S LCD SCREEN.</p>
-          <p>VILLAON V40 LCD SCREEN.</p>
-          <p>VILLAON V40'S LCD SCREEN.</p>
-        </div>
-      </article>
-      <!-- Slide 5 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/Xiaomi ML10 (S) 5G ORIG complete lcd.png" alt="Reliable smartphone batteries" />
-        </div>
-        <div class="slide-text-container">
-          <h3>Xiaomi ML10 (S) 5G ORIG.</h3>
-          <p>complete lcd.</p>
-        </div>
-      </article>
-       <!-- Slide 6 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/Network cables.png" alt="High precision repair tools" />
-        </div>
-        <div class="slide-text-container">
-          <h3>New arrival</h3>
-          <p>Network cables.</p>
-        </div>
-      </article>
-       <!-- Slide 7 -->
-      <article class="carousel-slide" tabindex="0">
-        <div class="slide-image-container">
-          <img src="images/M-kopa S34 comlete lcd.png" alt="High precision repair tools" />
-        </div>
-        <div class="slide-text-container">
-          <h3>M-kopa S34.</h3>
-          <p>Complete LCD.</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="carousel-dots" role="tablist" aria-label="Product slide navigation">
-      <button class="dot active" role="tab" aria-selected="true" aria-controls="slide1" tabindex="0"></button>
-      <button class="dot" role="tab" aria-selected="false" aria-controls="slide2" tabindex="-1"></button>
-      <button class="dot" role="tab" aria-selected="false" aria-controls="slide3" tabindex="-1"></button>
-      <button class="dot" role="tab" aria-selected="false" aria-controls="slide4" tabindex="-1"></button>
-       <button class="dot" role="tab" aria-selected="false" aria-controls="slide5" tabindex="-1"></button>
-       <button class="dot" role="tab" aria-selected="false" aria-controls="slide6" tabindex="-1"></button>
-       <button class="dot" role="tab" aria-selected="false" aria-controls="slide7" tabindex="-1"></button>
-       
-    </div>
-  </div>
-</section>
-
-<style>
-  .products-carousel-section {
-    max-width: 1000px;
-    margin: 5rem auto;
-    background: #fff;
-    padding: 3rem 2rem;
-    border-radius: 28px;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.18);
-  }
-  .products-carousel-section h2 {
-    color: #222;
-    margin-bottom: 3rem;
-    font-size: 3rem;
-    font-weight: 900;
-    text-align: center;
-    letter-spacing: 0.1em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-  }
-
-  /* Carousel styles */
-  .carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 24px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-  }
-  .carousel-track {
-    display: flex;
-    transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform;
-  }
-  .carousel-slide {
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);
-    color: white;
-    border-radius: 24px;
-    cursor: default;
-    outline: none;
-  }
-  .carousel-slide:nth-child(2) {
-    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-  }
-  .carousel-slide:nth-child(3) {
-    background: linear-gradient(135deg, #5577ee 0%, #82aaff 100%);
-  }
-  .carousel-slide:focus {
-    outline: 3px solid #ffd700;
-    outline-offset: 4px;
-  }
-
-  .slide-image-container {
-    flex: 1 1 45%;
-    max-width: 45%;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: inset 0 0 32px rgba(0,0,0,0.3);
-  }
-  .slide-image-container img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    transition: transform 0.6s ease-in-out;
-    display: block;
-  }
-  .carousel-slide:hover .slide-image-container img,
-  .carousel-slide:focus .slide-image-container img {
-    transform: scale(1.1);
-  }
-
-  .slide-text-container {
-    flex: 1 1 55%;
-    max-width: 55%;
-    box-sizing: border-box;
-  }
-  .slide-text-container h3 {
-    font-size: 2.4rem;
-    font-weight: 900;
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 8px rgba(0,0,0,0.35);
-  }
-  .slide-text-container p {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    font-weight: 700;
-    text-shadow: 0 0 6px rgba(0,0,0,0.25);
-    margin: 0;
-  }
-
-  /* Carousel dots */
-  .carousel-dots {
-    position: absolute;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-  }
-  .carousel-dots button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: #ccc;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .carousel-dots button.active,
-  .carousel-dots button:hover,
-  .carousel-dots button:focus {
-    background-color: #ffd700;
-    outline: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 720px) {
-    .carousel-slide {
-      flex-direction: column;
-      padding: 1rem 1rem 2rem;
-      min-height: auto;
-    }
-    .slide-image-container,
-    .slide-text-container {
-      max-width: 100% !important;
-      flex: 1 1 100%;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 0;
-    }
-    .slide-image-container img {
-      height: 240px;
-      border-radius: 20px;
-      margin-bottom: 1rem;
-    }
-    .slide-text-container h3 {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-    }
-    .slide-text-container p {
-      font-size: 1.1rem;
-    }
-  }
-</style>
-
-<script>
-  (function() {
-    const track = document.querySelector('#productsCarousel .carousel-track');
-    const slides = Array.from(track.children);
-    const dots = Array.from(document.querySelectorAll('#productsCarousel .dot'));
-    let currentIndex = 0;
-    const slideCount = slides.length;
-
-    function updateSlidePosition(index) {
-      const distance = -index * 100;
-      track.style.transform = 'translateX(' + distance + '%)';
-      dots.forEach((dot, i) => {
-        dot.style.backgroundColor = i === index ? '#ffd700' : '#ccc';
-        dot.classList.toggle('active', i === index);
-        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-        dot.tabIndex = i === index ? 0 : -1;
-      });
-    }
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateSlidePosition(currentIndex);
-        resetAutoSlide();
-      });
-      dot.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          currentIndex = i;
-          updateSlidePosition(currentIndex);
-          resetAutoSlide();
-        }
-      });
-    });
-
-    function autoSlide() {
-      currentIndex = (currentIndex + 1) % slideCount;
-      updateSlidePosition(currentIndex);
-    }
-
-    let autoSlideInterval = setInterval(autoSlide, 4000);
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideInterval);
-      autoSlideInterval = setInterval(autoSlide, 4000);
-    }
-
-    // Initialize
-    updateSlidePosition(currentIndex);
-  })();
-</script>
-
-    <!-- Let's fix Section -->
-  <section class="bg-gradient-to-br from-white to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">LET`S FIX</h2>
-     
-      <form id="problemform" class="bg-white p-10 shadow-xl rounded-xl space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-            <input type="text" id="fullName" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div>
-            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            <input type="text" id="location" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div>
-            <label for="problem" class="block text-sm font-medium text-gray-700 mb-1">Define Problem(What needs repair or the part to be fixed)</label>
-            <input type="text" id="problem" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-          <div>
-            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-            <input type="tel" id="phoneNumber" required class="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          </div>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-md transition duration-300">
-            Send 
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-<script>
-  document.getElementById("problemform").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById("fullName").value;
-    const location = document.getElementById("location").value;
-    const problem = document.getElementById("problem").value;
-    const phone = document.getElementById("phoneNumber").value;
-
-    const message = `Hello, I want a repair.\n\nName: *${name}*\nLocation: *${location}*\nProblem: *${problem}*\nPhone: *${phone}*`;
-    const waUrl = `https://wa.me/254742313539?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, '_blank');
-  });
-</script>
-  <!-- Map Location Section -->
-    <section class="py-16 bg-white" id="locationSection">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Our Location</h2>
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske"
-                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
+      </div>
     </section>
 
+    <!-- Featured Products Carousel (Swiper modern) -->
+    <section id="featured" class="mt-24" data-aos="fade-up">
+      <div class="text-center mb-10">
+        <span class="text-blue-600 font-semibold"><i class="fas fa-box-open"></i> Premium Components</span>
+        <h2 class="text-4xl font-extrabold dark:text-white">Genuine & OEM Parts</h2>
+      </div>
+      <div class="swiper custom-swiper rounded-2xl overflow-hidden shadow-2xl">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/1D976C/white?text=Xiaomi+14T+LCD" alt="Xiaomi LCD"></div>
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/f7971e/white?text=Samsung+A36+Frame+LCD" alt="Samsung A36"></div>
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/5577ee/white?text=Tecno+Camon+40+Pro" alt="Tecno"></div>
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/FF6B6B/white?text=Villaon+V40+Series" alt="Villaon"></div>
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/2C3E50/white?text=Xiaomi+ML10+5G+LCD" alt="Xiaomi ML10"></div>
+          <div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/3498db/white?text=Network+Cables+Stock" alt="Cables"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev !text-white !bg-black/30 !rounded-full !w-10 !h-10"></div>
+        <div class="swiper-button-next !text-white !bg-black/30 !rounded-full !w-10 !h-10"></div>
+      </div>
+    </section>
 
-<footer>
-      
-        <section id="footer"
-            class="pt-16 pb-7 font-primarylw border border-gray-200 dark:border-gray-800 w-full bg-white dark:bg-black text-black dark:text-white">
-            <div class=" md:absolute md:bottom-0 w-full  bg-white dark:bg-black "></div>
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div
-                    class="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-24 pb-14 border-b-2 border-gray-300 dark:border-gray-700">
-                    <div class="block w-full lg:max-w-full max-lg:mx-auto">
-                        <div class="flex flex-col gap-8 w-full lg:max-w-xs ">
-                            <!-- Logo Section -->
-                            <div class="flex items-center space-x-2 w-full justify-center md:justify-start">
-                                <img src="images/Artboard_6-removebg-preview__2_-removebg-preview.png" alt="Logo"
-                                    class="w-8 md:w-12 h-8 md:h-12">
-                                <h1 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
-                                    Quickfix
-                                </h1>
-                            </div>
-                            <p class="text-base font-normal text-black dark:text-white max-[470px]:text-center">
-                                 At Quickfix Phone Repair Shop, we’re trusted phone repair wizards — we handle it all with expert hands. Fast turnarounds, genuine parts, and satisfied clients are what define us.
-                            </p>
-                            <p class="text-base font-normal text-black dark:text-white max-[470px]:text-center">
-                                 Product of ALTECH software developers.
-                            </p>
-
-                            <div
-                                class="flex flex-col min-[470px]:flex-row max-[470px]:gap-4 items-center max-[470px]:justify-center">
-                                <div class="flex items-center">
-                                    <img src="https://i.pravatar.cc/100?img=1" alt=""
-                                        class="relative w-10 rounded-full">
-                                    <img src="https://i.pravatar.cc/100?img=2" alt=""
-                                        class="relative -translate-x-2 z-10  w-10 rounded-full">
-                                    <img src="https://i.pravatar.cc/100?img=3" alt=""
-                                        class="relative -translate-x-4 z-20  w-10 rounded-full">
-                                </div>
-                                <p class="text-black dark:text-white text-base font-normal"><span
-                                        class="text-black dark:text-white font-medium">Expert
-                                    </span>Repair
-                                    Wizards</p>
-                            </div>
-                        </div>
-                    </div>
-                   
-                        <div class="">
-                            <h6 class="text-lg font-medium text-black dark:text-white max-[470px]:text-center mb-7">
-                                Contacts</h6>
-                            <ul class="flex flex-col max-[470px]:items-center gap-6">
-                                <li><a href="javascript:;"
-                                        class="text-base font-normal max-lg:text-center text-gray-600 dark:text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-indigo-600 focus-within:outline-0 focus-within:text-indigo-600">
-                                        +254 742 313 539</a></li>
-                                <li><a href="javascript:;"
-                                        class="text-base font-normal max-lg:text-center text-gray-600 dark:text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-indigo-600 focus-within:outline-0 focus-within:text-indigo-600">
-                                       +254 716 868 013 </a></li>
-
-                            </ul>
-                        </div>
-                        <div class="">
-                            <h6 class="text-lg font-medium text-black dark:text-white max-[470px]:text-center mb-7">
-                                Location</h6>
-                            <ul class="flex flex-col max-[470px]:items-center gap-6">
-                                <li><a href="javascript:;"
-                                        class="text-base font-normal max-lg:text-center text-gray-600 dark:text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-indigo-600 focus-within:outline-0 focus-within:text-indigo-600">Nairobi, CBD</a>
-                                </li>
-                                <li><a href="javascript:;"
-                                        class="text-base font-normal max-lg:text-center text-gray-600 dark:text-gray-400 whitespace-nowrap transition-all duration-300 hover:text-indigo-600 focus-within:outline-0 focus-within:text-indigo-600">Munyu Road</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div
-                    class="flex flex-col-reverse gap-5 md:flex-row items-center first-letter:items-center justify-between pt-7">
-                    <p class="font-normal text-sm text-gray-600 dark:text-gray-400">©<a
-                            href="https://pagedone.io/">ALTECH</a>2025, All
-                        rights reserved.</p>
-                    <ul class="flex items-center gap-9">
-                        <li><a href="javascript:;"
-                                class="text-gray-600 dark:text-gray-400 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Terms</a>
-                        </li>
-                        <li><a href="javascript:;"
-                                class="text-gray-600 dark:text-gray-400 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Privacy</a>
-                        </li>
-                        <li><a href="javascript:;"
-                                class="text-gray-600 dark:text-gray-400 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Cookies</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <!-- LET'S FIX (Repair Request Form) -->
+    <section id="letsfix" class="mt-24 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12" data-aos="flip-up">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+          <i class="fas fa-clipboard-list text-4xl text-blue-600"></i>
+          <h2 class="text-3xl md:text-4xl font-black mt-3 dark:text-white">Let's Fix Your Device</h2>
+          <p class="text-gray-500 dark:text-gray-300">Submit details and our technician will contact you within 20 minutes.</p>
+        </div>
+        <form id="repairRequestForm" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div><label class="block font-semibold mb-1 dark:text-gray-200">Full Name</label><input type="text" id="fullName" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500"></div>
+            <div><label class="block font-semibold mb-1 dark:text-gray-200">Location</label><input type="text" id="location" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
+            <div><label class="block font-semibold mb-1 dark:text-gray-200">Problem / Part</label><input type="text" id="problem" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
+            <div><label class="block font-semibold mb-1 dark:text-gray-200">WhatsApp Number</label><input type="tel" id="phoneNumber" required class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 dark:bg-gray-700"></div>
           </div>
-        </section>
-   
+          <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Send Repair Request</button>
+        </form>
+      </div>
+    </section>
 
+    <!-- Map Location with nicer style -->
+    <section id="locationSection" class="mt-24" data-aos="fade-left">
+      <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg">
+        <div class="p-6 text-center border-b dark:border-gray-700"><i class="fas fa-map-pin text-blue-600 mr-2"></i><span class="font-bold"> Nairobi CBD • Munyu Road</span></div>
+        <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
 
+  <!-- Modern Footer (Redesigned) -->
+  <footer id="footer" class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div class="col-span-1 md:col-span-1">
+          <div class="flex items-center space-x-2"><div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"><i class="fas fa-screwdriver-wrench text-white"></i></div><span class="text-2xl font-black">QUICKFIX</span></div>
+          <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm">Professional phone repair with certified parts, rapid turnaround, and customer-first service in Nairobi.</p>
+          <div class="flex gap-4 mt-5"><i class="fab fa-twitter text-gray-400 hover:text-blue-500 cursor-pointer"></i><i class="fab fa-instagram text-gray-400 hover:text-pink-500 cursor-pointer"></i><i class="fab fa-facebook text-gray-400 hover:text-blue-600 cursor-pointer"></i></div>
+        </div>
+        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Services</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li>Screen Replacement</li><li>Battery Service</li><li>Water Damage</li><li>Board Repair</li></ul></div>
+        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Support</h4><ul class="space-y-2 text-gray-500 dark:text-gray-400 text-sm"><li><i class="fas fa-phone-alt mr-2 w-4"></i> +254 742 313 539</li><li><i class="fab fa-whatsapp mr-2 text-green-500"></i> +254 716 868 013</li><li><i class="far fa-envelope mr-2"></i> repair@quickfix.co.ke</li></ul></div>
+        <div><h4 class="font-bold text-lg mb-4 dark:text-white">Location</h4><address class="not-italic text-gray-500 dark:text-gray-400 text-sm">Munyu Road, Nairobi CBD<br>Open Mon-Sat: 9am - 7pm<br>Sunday: Closed</address></div>
+      </div>
+      <div class="border-t border-gray-200 dark:border-gray-800 mt-12 pt-6 text-center text-gray-400 text-sm flex flex-wrap justify-between">
+        <span>© 2025 Quickfix — Product of ALTECH software developers</span>
+        <span class="space-x-4"><a href="#" class="hover:text-blue-500">Privacy</a><a href="#" class="hover:text-blue-500">Terms</a><a href="#" class="hover:text-blue-500">Cookies</a></span>
+      </div>
+    </div>
+  </footer>
 
-    <!--Social Liks codings below-->
-  
+  <!-- Developer Contact Badge -->
+  <a id="devContact" class="fixed z-50 bottom-6 left-6 bg-gray-800/80 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-full flex items-center gap-2 hover:bg-gray-900" href="https://api.whatsapp.com/send?phone=254706389206" target="_blank"><i class="fab fa-codepen"></i> Dev Support</a>
 
-    <a id="yt-link" class="meta-link" href="https://api.whatsapp.com/send?phone=254706389206"
-        target="_blank">
-        <i class="#"></i>
-        <span> 📞 Contact software developer</span>
-    </a>
+  <script>
+    // Initialize Swiper (modern carousel)
+    const swiper = new Swiper('.custom-swiper', {
+      loop: true,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      effect: 'slide',
+      speed: 800,
+    });
 
-  
+    // GSAP scroll animations + AOS ready
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.quickfix-hero h1', { duration: 1, y: 40, opacity: 0, ease: "power3.out" });
+    gsap.from('.quickfix-hero p', { duration: 1, y: 20, opacity: 0, delay: 0.2 });
+    gsap.from('.quickfix-hero .flex', { duration: 0.8, scale: 0.9, opacity: 0, delay: 0.4 });
 
+    // Repair form WhatsApp handler
+    document.getElementById("repairRequestForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("fullName").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const problem = document.getElementById("problem").value.trim();
+      const phone = document.getElementById("phoneNumber").value.trim();
+      if (!name || !location || !problem || !phone) { alert("Please fill all fields"); return; }
+      const message = `🔧 *NEW REPAIR REQUEST* 🔧\n\n👤 Name: ${name}\n📍 Location: ${location}\n⚠️ Issue: ${problem}\n📞 Contact: ${phone}`;
+      const waUrl = `https://wa.me/254742313539?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, '_blank');
+      // optional reset
+      document.getElementById("repairRequestForm").reset();
+    });
 
-
-
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle"
-        class="fixed z-50 top-2 left-2 text-gray-800 dark:text-gray-200 bg-gray-500/30 dark:bg-gray-900/70 p-2 rounded-full shadow-md hover:bg-gray-700">
-        <!-- Sun Icon for Light Mode -->
-        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-5 transition-opacity duration-300 ease-in-out opacity-0">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-        </svg>
-
-        <!-- Moon Icon for Dark Mode -->
-        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-5 transition-opacity duration-300 ease-in-out opacity-100">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-        </svg>
-    </button>
-
-    <script src="https://cdn.jsdelivr.net/npm/lightwind@3.1.0/src/lightswind.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // Enable class-based dark mode
-            theme: {
-                extend: {
-                    colors: {},
-                },
-            },
-        };
-
-        const setInitialTheme = () => {
-            const currentTheme = localStorage.getItem('iframetheme') || 'dark';
-            if (currentTheme === 'dark') {
-                document.body.classList.add('dark');
-                document.getElementById('sun-icon').style.opacity = '0';
-                document.getElementById('moon-icon').style.opacity = '1';
-            } else {
-                document.body.classList.remove('dark');
-                document.getElementById('sun-icon').style.opacity = '1';
-                document.getElementById('moon-icon').style.opacity = '0';
-            }
-        };
-
-        setInitialTheme();
-
-        const themeToggleButton = document.getElementById('theme-toggle');
-        themeToggleButton.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('iframetheme') || 'dark';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('iframetheme', newTheme);
-
-            document.body.classList.toggle('dark', newTheme === 'dark');
-
-            if (newTheme === 'dark') {
-                document.getElementById('moon-icon').style.opacity = '0';
-                document.getElementById('sun-icon').style.opacity = '1';
-            } else {
-                document.getElementById('sun-icon').style.opacity = '0';
-                document.getElementById('moon-icon').style.opacity = '1';
-            }
-
-            const iframe = document.querySelector('iframe');
-            if (iframe) {
-                const iframeWindow = iframe.contentWindow;
-                const iframeDocument = iframe.contentDocument || iframeWindow.document;
-
-                if (iframeDocument) {
-                    iframeDocument.addEventListener('DOMContentLoaded', () => {
-                        iframeDocument.body.classList.toggle('dark', newTheme === 'dark');
-                    });
-                }
-            }
-        });
-    </script>
-
-</footer>
-
-
+    // Theme persistence handled by Alpine but additional fix for dark images
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    AOS.refresh();
+  </script>
+  <style>
+    [x-cloak] { display: none !important; }
+    .custom-swiper .swiper-button-prev, .custom-swiper .swiper-button-next { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); border-radius: 40px; width: 42px; height: 42px; }
+    .custom-swiper .swiper-button-prev:after, .custom-swiper .swiper-button-next:after { font-size: 20px; font-weight: bold; }
+  </style>
 </body>
-</html>
+ </html>
