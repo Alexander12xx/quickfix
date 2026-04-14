@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
-  <title>Quickfix phone repair</title>
+  <title>Quickfix | Smart Interactive Phone + Premium Services</title>
   <!-- TailwindCSS + Modern Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -18,33 +18,170 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; transition: background 0.3s ease; }
+    body { 
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; 
+      background: #f8fafc; 
+      transition: background 0.3s ease; 
+      overflow-x: hidden;
+    }
     body.dark { background: #0f172a; color: #e2e8f0; }
-    /* Light mode text fixes */
     .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600 { color: #f1f5f9 !important; }
     .text-gray-800 { color: #1e293b !important; }
-    .glass-nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); }
+    .glass-nav { 
+      background: rgba(255,255,255,0.95); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
     .dark .glass-nav { background: rgba(15,23,42,0.95); }
-    .btn-primary { background: linear-gradient(105deg, #2563eb 0%, #1d4ed8 100%); }
-    .quickfix-hero { background: linear-gradient(107deg, #0f172a 0%, #1e293b 100%), url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-blend-mode: overlay; background-size: cover; }
-    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 1000; background: #25D366; width: 58px; height: 58px; border-radius: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(37,211,102,0.4); transition: 0.2s; }
-    .whatsapp-float:hover { transform: scale(1.08); }
-    @keyframes bounce { 0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.6)} }
-    @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none; }
-    .service-card-modern { background: rgba(255,255,255,0.85); backdrop-filter: blur(2px); transition: all 0.4s; border: 1px solid rgba(59,130,246,0.2); box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
-    .dark .service-card-modern { background: rgba(30,41,59,0.85); }
-    .service-card-modern:hover { transform: translateY(-8px); box-shadow: 0 20px 30px -12px rgba(0,100,255,0.25); }
-    .phone-app-icon { transition: transform 0.2s ease; cursor: pointer; }
-    .phone-app-icon:hover { transform: scale(1.08); }
-    .product-card-mini { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border-radius: 16px; transition: all 0.2s; cursor: pointer; }
-    .product-card-mini:hover { background: rgba(255,255,255,0.25); transform: scale(1.02); }
-    [x-cloak] { display: none; }
+    .btn-primary { 
+      background: linear-gradient(105deg, #2563eb 0%, #1d4ed8 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(105deg, #1d4ed8 0%, #1e40af 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(37,99,235,0.4);
+    }
+    .quickfix-hero { 
+      background: linear-gradient(107deg, #0f172a 0%, #1e293b 100%), 
+                  url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); 
+      background-blend-mode: overlay; 
+      background-size: cover; 
+    }
+    .whatsapp-float { 
+      position: fixed; 
+      bottom: 28px; 
+      right: 28px; 
+      z-index: 1000; 
+      background: #25D366; 
+      width: 58px; 
+      height: 58px; 
+      border-radius: 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      box-shadow: 0 8px 22px rgba(37,211,102,0.4); 
+      transition: 0.2s;
+      animation: pulse 2s infinite;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); animation: none; }
+    @keyframes pulse {
+      0% { box-shadow: 0 8px 22px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 8px 22px rgba(37,211,102,0.7); }
+      100% { box-shadow: 0 8px 22px rgba(37,211,102,0.4); }
+    }
+    @keyframes slideUp { 
+      from { transform: translateY(100%); opacity: 0; } 
+      to { transform: translateY(0); opacity: 1; } 
+    }
+    @keyframes fadeIn { 
+      from { opacity: 0; } 
+      to { opacity: 1; } 
+    }
+    #particles-js { 
+      position: absolute; 
+      width: 100%; 
+      height: 100%; 
+      top: 0; 
+      left: 0; 
+      z-index: 0; 
+      pointer-events: none; 
+    }
+    .service-card-modern { 
+      background: rgba(255,255,255,0.95); 
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.4s; 
+      border: 1px solid rgba(59,130,246,0.2); 
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05); 
+    }
+    .dark .service-card-modern { background: rgba(30,41,59,0.95); }
+    .service-card-modern:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 20px 30px -12px rgba(0,100,255,0.25); 
+      border-color: rgba(59,130,246,0.5);
+    }
+    .phone-app-icon { 
+      transition: transform 0.2s ease, filter 0.2s ease; 
+      cursor: pointer; 
+    }
+    .phone-app-icon:hover { 
+      transform: scale(1.08); 
+      filter: brightness(1.1);
+    }
+    .phone-app-icon:active { transform: scale(0.95); }
+    .product-card-mini { 
+      background: rgba(255,255,255,0.15); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px; 
+      transition: all 0.2s; 
+      cursor: pointer; 
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .product-card-mini:hover { 
+      background: rgba(255,255,255,0.25); 
+      transform: scale(1.02);
+      border-color: rgba(255,255,255,0.3);
+    }
+    [x-cloak] { display: none !important; }
     .lockscreen-slide { animation: slideUp 0.5s ease-out forwards; }
     .home-screen-fade { animation: fadeIn 0.4s ease-out; }
-    .footer-glass { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(0,0,0,0.05); }
-    .dark .footer-glass { background: rgba(15,23,42,0.95); border-top-color: rgba(255,255,255,0.05); }
+    .footer-glass { 
+      background: rgba(255,255,255,0.95); 
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0,0,0,0.05); 
+    }
+    .dark .footer-glass { 
+      background: rgba(15,23,42,0.95); 
+      border-top-color: rgba(255,255,255,0.05); 
+    }
+    /* Phone Frame Enhancements */
+    .phone-frame {
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,255,255,0.1);
+    }
+    /* In-app browser styling */
+    .in-app-browser {
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .in-app-browser iframe {
+      background: white;
+    }
+    .dark .in-app-browser iframe {
+      background: #1e293b;
+    }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(59,130,246,0.5);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(59,130,246,0.8);
+    }
+    /* Loading animation */
+    .loading-spinner {
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top: 3px solid #3b82f6;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body x-data="{ 
@@ -54,99 +191,292 @@
   currentTime: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
   currentDate: new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
   currentHours: new Date().getHours(),
+  inAppBrowser: { active: false, url: '', title: '', loading: false },
   productsList: [
-    { id: 1, name: 'Xiaomi 14T LCD', price: 'KSh 4,500', image: 'https://placehold.co/200x150/1D976C/white?text=Xiaomi+14T' },
-    { id: 2, name: 'Samsung A36 Frame', price: 'KSh 6,200', image: 'https://placehold.co/200x150/f7971e/white?text=Samsung+A36' },
-    { id: 3, name: 'Tecno Camon 40 Pro', price: 'KSh 5,800', image: 'https://placehold.co/200x150/5577ee/white?text=Tecno+Camon' },
-    { id: 4, name: 'Villaon V40 LCD', price: 'KSh 3,900', image: 'https://placehold.co/200x150/FF6B6B/white?text=Villaon+V40' }
+    { id: 1, name: 'Xiaomi 14T LCD', price: 'KSh 4,500', image: 'https://placehold.co/200x150/1D976C/white?text=Xiaomi+14T', description: 'Original OLED display panel for Xiaomi 14T' },
+    { id: 2, name: 'Samsung A36 Frame', price: 'KSh 6,200', image: 'https://placehold.co/200x150/f7971e/white?text=Samsung+A36', description: 'Premium frame with side buttons' },
+    { id: 3, name: 'Tecno Camon 40 Pro', price: 'KSh 5,800', image: 'https://placehold.co/200x150/5577ee/white?text=Tecno+Camon', description: 'Complete screen assembly' },
+    { id: 4, name: 'Villaon V40 LCD', price: 'KSh 3,900', image: 'https://placehold.co/200x150/FF6B6B/white?text=Villaon+V40', description: 'LCD display with touch digitizer' }
   ],
   selectedProduct: null,
   showProductDetail: false,
   cameraStream: null,
   cameraActive: false,
   weatherData: { temp: '24°C', condition: 'Sunny', city: 'Nairobi' },
+  developerInfo: {
+    company: 'ALTECH Software Developers',
+    website: 'altechit.netlify.app',
+    founded: '2020',
+    team: [
+      { name: 'Alex Mumo', role: 'Lead Developer', expertise: 'Full Stack & Mobile' },
+      { name: 'Sarah Wanjiku', role: 'UI/UX Designer', expertise: 'Product Design' },
+      { name: 'James Odhiambo', role: 'Backend Engineer', expertise: 'Cloud & APIs' },
+      { name: 'Grace Njeri', role: 'QA Engineer', expertise: 'Testing & Automation' }
+    ],
+    projects: [
+      { name: 'WeatherAlt', url: 'https://weatheralt.netlify.app', description: 'Advanced weather forecasting' },
+      { name: 'Mumo Foundation', url: 'https://mumofoundation.netlify.app', description: 'Community empowerment' },
+      { name: 'Quickfix POS', url: '#', description: 'Repair shop management' }
+    ],
+    skills: ['React', 'Vue.js', 'Node.js', 'Python', 'Flutter', 'AWS', 'Docker'],
+    contact: { phone: '+254 706 389 206', email: 'dev@altechit.netlify.app', location: 'Nairobi, Kenya' }
+  },
   updateClock() {
     this.currentTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     this.currentDate = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
     this.currentHours = new Date().getHours();
     setTimeout(() => this.updateClock(), 1000);
   },
-  unlockPhone() { this.phoneLocked = false; this.activePhoneScreen = 'home'; },
-  openApp(screen) { if (!this.phoneLocked) this.activePhoneScreen = screen; },
-  goHome() { if (!this.phoneLocked) this.activePhoneScreen = 'home'; },
-  viewProduct(product) { this.selectedProduct = product; this.showProductDetail = true; this.activePhoneScreen = 'productDetail'; },
-  closeProductDetail() { this.showProductDetail = false; this.activePhoneScreen = 'products'; },
-  orderViaWhatsApp(productName) { window.open(`https://wa.me/254742313539?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(productName)}`, '_blank'); },
+  unlockPhone() { 
+    this.phoneLocked = false; 
+    this.activePhoneScreen = 'home';
+    // Add haptic feedback simulation
+    if (window.navigator.vibrate) window.navigator.vibrate(20);
+  },
+  openApp(screen) { 
+    if (!this.phoneLocked) {
+      this.activePhoneScreen = screen;
+      if (screen === 'camera') this.startCamera();
+    }
+  },
+  goHome() { 
+    if (!this.phoneLocked) {
+      this.activePhoneScreen = 'home';
+      this.inAppBrowser.active = false;
+      this.stopCamera();
+    }
+  },
+  openInAppBrowser(url, title) {
+    if (!this.phoneLocked) {
+      this.inAppBrowser = { active: true, url: url, title: title || 'Web App', loading: true };
+      this.activePhoneScreen = 'browser';
+      setTimeout(() => { this.inAppBrowser.loading = false; }, 1000);
+    }
+  },
+  closeBrowser() {
+    this.inAppBrowser.active = false;
+    this.activePhoneScreen = 'home';
+  },
+  viewProduct(product) { 
+    this.selectedProduct = product; 
+    this.showProductDetail = true; 
+    this.activePhoneScreen = 'productDetail'; 
+  },
+  closeProductDetail() { 
+    this.showProductDetail = false; 
+    this.activePhoneScreen = 'products'; 
+  },
+  orderViaWhatsApp(productName) { 
+    window.open(`https://wa.me/254742313539?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(productName)}`, '_blank'); 
+  },
   startCamera() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+      navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' } 
+      }).then(stream => {
         this.cameraStream = stream;
         this.cameraActive = true;
         setTimeout(() => {
           const videoEl = document.getElementById('phoneCameraVideo');
-          if (videoEl) videoEl.srcObject = stream;
+          if (videoEl) {
+            videoEl.srcObject = stream;
+            videoEl.play();
+          }
         }, 100);
-      }).catch(err => { alert('Camera access denied or error: ' + err.message); });
-    } else { alert('Camera not supported on this device'); }
+      }).catch(err => { 
+        alert('Camera access denied. Please enable camera permissions.'); 
+        console.error('Camera error:', err);
+      });
+    } else { 
+      alert('Camera not supported on this device'); 
+    }
   },
-  stopCamera() { if (this.cameraStream) { this.cameraStream.getTracks().forEach(track => track.stop()); this.cameraActive = false; this.cameraStream = null; } },
+  stopCamera() { 
+    if (this.cameraStream) { 
+      this.cameraStream.getTracks().forEach(track => {
+        track.stop();
+      }); 
+      this.cameraActive = false; 
+      this.cameraStream = null; 
+      const videoEl = document.getElementById('phoneCameraVideo');
+      if (videoEl) videoEl.srcObject = null;
+    } 
+  },
   takePhoto() {
     const video = document.getElementById('phoneCameraVideo');
-    if (!video) return;
+    if (!video || !this.cameraActive) {
+      alert('Camera not active');
+      return;
+    }
     const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+    // Add timestamp watermark
+    ctx.font = '12px Arial';
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillText(new Date().toLocaleString(), 10, canvas.height - 10);
+    
     const link = document.createElement('a');
-    link.download = 'quickfix-photo.png';
+    link.download = `quickfix-${Date.now()}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
+    
+    // Flash effect
+    video.style.opacity = '0.5';
+    setTimeout(() => video.style.opacity = '1', 100);
   },
   fetchWeather() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=-1.2864&longitude=36.8172&current_weather=true')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=-1.2864&longitude=36.8172&current_weather=true&timezone=Africa/Nairobi')
       .then(res => res.json())
-      .then(data => { if(data.current_weather) this.weatherData = { temp: `${Math.round(data.current_weather.temperature)}°C`, condition: data.current_weather.weathercode === 0 ? 'Sunny' : 'Cloudy', city: 'Nairobi' }; })
-      .catch(() => { this.weatherData = { temp: '24°C', condition: 'Sunny', city: 'Nairobi' }; });
+      .then(data => { 
+        if(data.current_weather) {
+          const weatherCodes = { 0: 'Clear', 1: 'Mainly Clear', 2: 'Partly Cloudy', 3: 'Overcast', 45: 'Foggy', 51: 'Drizzle', 61: 'Rain' };
+          this.weatherData = { 
+            temp: `${Math.round(data.current_weather.temperature)}°C`, 
+            condition: weatherCodes[data.current_weather.weathercode] || 'Cloudy', 
+            city: 'Nairobi',
+            wind: `${data.current_weather.windspeed} km/h`
+          }; 
+        }
+      })
+      .catch(() => { 
+        this.weatherData = { temp: '24°C', condition: 'Partly Cloudy', city: 'Nairobi', wind: '12 km/h' }; 
+      });
   },
   submitPhoneRepair() {
     const model = document.getElementById('phoneRepairModel')?.value;
     const issue = document.getElementById('phoneRepairIssue')?.value;
     const contact = document.getElementById('phoneRepairContact')?.value;
-    if(!model || !issue || !contact) { alert('Fill all fields'); return; }
-    window.open(`https://wa.me/254742313539?text=PHONE%20REPAIR%20APP%0AModel:${model}%0AIssue:${issue}%0AContact:${contact}`,'_blank');
+    if(!model || !issue || !contact) { 
+      alert('Please fill all fields'); 
+      return; 
+    }
+    window.open(`https://wa.me/254742313539?text=PHONE%20REPAIR%20REQUEST%0A%0AModel:%20${encodeURIComponent(model)}%0AIssue:%20${encodeURIComponent(issue)}%0AContact:%20${encodeURIComponent(contact)}`,'_blank');
+    // Clear form
+    document.getElementById('phoneRepairModel').value = '';
+    document.getElementById('phoneRepairIssue').value = '';
+    document.getElementById('phoneRepairContact').value = '';
+    this.goHome();
+  },
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    if (this.darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+    localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
   }
 }" x-init="updateClock(); fetchWeather(); if(darkMode) document.body.classList.add('dark'); $watch('darkMode', val => { if(val) document.body.classList.add('dark'); else document.body.classList.remove('dark'); localStorage.setItem('theme', val ? 'dark' : 'light'); }); AOS.init({ duration: 700, once: true }); particlesJS('particles-js', { particles: { number: { value: 40 }, color: { value: '#3b82f6' }, shape: { type: 'circle' }, opacity: { value: 0.3 }, size: { value: 2 }, move: { enable: true, speed: 1 } } });">
 
   <!-- Floating WhatsApp -->
-  <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp text-white text-3xl"></i></a>
+  <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+    <i class="fab fa-whatsapp text-white text-3xl"></i>
+  </a>
 
   <!-- Glass Header -->
   <header class="glass-nav sticky top-0 z-50 shadow-sm border-b border-gray-200 dark:border-gray-800">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex justify-between items-center">
-      <div class="flex items-center space-x-3"><div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center"><i class="fas fa-tools text-white"></i></div><span class="text-2xl font-extrabold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">QUICKFIX</span></div>
-      <nav class="hidden md:flex gap-8 text-sm font-semibold"><a href="#services" class="hover:text-blue-600 transition"><i class="fas fa-microchip mr-1"></i>Services</a><a href="#featuredSection" class="hover:text-blue-600 transition"><i class="fas fa-mobile-alt mr-1"></i>Products</a><a href="#interactivePhone" class="hover:text-blue-600 transition"><i class="fas fa-phone-alt mr-1"></i>Smart Phone</a><a href="#locationSection" class="hover:text-blue-600 transition"><i class="fas fa-map-marker-alt mr-1"></i>Location</a></nav>
-      <button @click="darkMode = !darkMode" class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition"><i x-show="!darkMode" class="fas fa-moon text-gray-700"></i><i x-show="darkMode" class="fas fa-sun text-yellow-400" style="display:none;" x-cloak></i></button>
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+          <i class="fas fa-tools text-white text-xl"></i>
+        </div>
+        <span class="text-2xl font-extrabold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">QUICKFIX</span>
+      </div>
+      <nav class="hidden md:flex gap-8 text-sm font-semibold">
+        <a href="#services" class="hover:text-blue-600 transition relative group">
+          <i class="fas fa-microchip mr-1"></i>Services
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#featuredSection" class="hover:text-blue-600 transition relative group">
+          <i class="fas fa-mobile-alt mr-1"></i>Products
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#interactivePhone" class="hover:text-blue-600 transition relative group">
+          <i class="fas fa-phone-alt mr-1"></i>Smart Phone
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#locationSection" class="hover:text-blue-600 transition relative group">
+          <i class="fas fa-map-marker-alt mr-1"></i>Location
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+      <button @click="toggleDarkMode()" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition hover:scale-110">
+        <i x-show="!darkMode" class="fas fa-moon text-gray-700"></i>
+        <i x-show="darkMode" class="fas fa-sun text-yellow-400" style="display:none;" x-cloak></i>
+      </button>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="quickfix-hero text-white py-20 md:py-28 relative overflow-hidden"><div id="particles-js" class="absolute inset-0"></div><div class="absolute inset-0 bg-black/40"></div><div class="max-w-6xl mx-auto px-6 relative z-10 text-center" data-aos="fade-up"><h1 class="text-5xl md:text-7xl font-black">QUICKFIX</h1><p class="text-xl md:text-2xl mt-4">Same-day repair • Genuine parts • Expert technicians</p><div class="mt-8 flex justify-center gap-4"><a href="https://api.whatsapp.com/send?phone=254742313539" class="bg-white text-blue-700 font-bold px-8 py-3 rounded-full shadow-xl flex items-center gap-2"><i class="fab fa-whatsapp text-green-600"></i> WhatsApp Support</a><a href="#letsfix" class="bg-transparent border-2 border-white px-8 py-3 rounded-full hover:bg-white/10 transition"><i class="fas fa-wrench mr-2"></i>Request Repair</a></div></div></section>
+  <!-- Hero Section -->
+  <section class="quickfix-hero text-white py-20 md:py-28 relative overflow-hidden">
+    <div id="particles-js" class="absolute inset-0"></div>
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10 text-center" data-aos="fade-up">
+      <h1 class="text-5xl md:text-7xl font-black animate-pulse">
+        <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">QUICKFIX</span>
+      </h1>
+      <p class="text-xl md:text-2xl mt-4">Same-day repair • Genuine parts • Expert technicians</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="https://api.whatsapp.com/send?phone=254742313539" target="_blank" class="bg-white text-blue-700 font-bold px-8 py-3 rounded-full shadow-xl flex items-center gap-2 hover:scale-105 transition">
+          <i class="fab fa-whatsapp text-green-600"></i> WhatsApp Support
+        </a>
+        <a href="#letsfix" class="bg-transparent border-2 border-white px-8 py-3 rounded-full hover:bg-white/10 transition hover:scale-105">
+          <i class="fas fa-wrench mr-2"></i>Request Repair
+        </a>
+      </div>
+    </div>
+  </section>
 
   <main class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
-    <!-- Services -->
-    <section id="services" data-aos="fade-right"><div class="text-center mb-12"><span class="text-blue-600 font-semibold"><i class="fas fa-cog mr-1"></i> Premium Repairs</span><h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mt-2">Expert Services</h2><div class="w-24 h-1 bg-blue-600 mx-auto rounded-full mt-4"></div></div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-battery-full text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold text-gray-800 dark:text-white">Battery Replacement</h3><p class="text-gray-600 dark:text-gray-300 mt-2">Genuine cells, 6-month warranty.</p></div>
-      <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-mobile-alt text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold text-gray-800 dark:text-white">Screen Repair</h3><p class="text-gray-600 dark:text-gray-300 mt-2">OLED/IPS, 45 min express.</p></div>
-      <div class="service-card-modern rounded-2xl p-6 shadow-md"><div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mb-5"><i class="fas fa-tint text-3xl text-blue-600"></i></div><h3 class="text-2xl font-bold text-gray-800 dark:text-white">Water Damage Fix</h3><p class="text-gray-600 dark:text-gray-300 mt-2">Ultrasonic cleaning, board-level repair.</p></div>
-    </div></section>
+    <!-- Services Section -->
+    <section id="services" data-aos="fade-right">
+      <div class="text-center mb-12">
+        <span class="text-blue-600 font-semibold"><i class="fas fa-cog mr-1"></i> Premium Repairs</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mt-2">Expert Services</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full mt-4"></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="service-card-modern rounded-2xl p-6 shadow-md">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-2xl flex items-center justify-center mb-5">
+            <i class="fas fa-battery-full text-3xl text-blue-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Battery Replacement</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">Genuine cells, 6-month warranty. Fast 30-min service.</p>
+          <div class="mt-4 text-sm text-blue-600 dark:text-blue-400">Starting at KSh 2,500</div>
+        </div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md">
+          <div class="w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/40 rounded-2xl flex items-center justify-center mb-5">
+            <i class="fas fa-mobile-alt text-3xl text-green-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Screen Repair</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">OLED/IPS displays, 45 min express service.</p>
+          <div class="mt-4 text-sm text-green-600 dark:text-green-400">Starting at KSh 3,500</div>
+        </div>
+        <div class="service-card-modern rounded-2xl p-6 shadow-md">
+          <div class="w-14 h-14 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900/40 dark:to-cyan-800/40 rounded-2xl flex items-center justify-center mb-5">
+            <i class="fas fa-tint text-3xl text-cyan-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Water Damage Fix</h3>
+          <p class="text-gray-600 dark:text-gray-300 mt-2">Ultrasonic cleaning, board-level repair.</p>
+          <div class="mt-4 text-sm text-cyan-600 dark:text-cyan-400">Starting at KSh 1,800</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- INTERACTIVE PHONE WITH LOCKSCREEN -->
+    <!-- INTERACTIVE PHONE SECTION -->
     <section id="interactivePhone" class="mt-24" data-aos="zoom-in-up">
-      <div class="text-center mb-10"><span class="text-blue-600 font-semibold"><i class="fas fa-mobile-android-alt"></i> Interactive Smart Phone</span><h2 class="text-4xl font-extrabold text-gray-800 dark:text-white">Swipe to Unlock | 10+ Apps</h2></div>
+      <div class="text-center mb-10">
+        <span class="text-blue-600 font-semibold"><i class="fas fa-mobile-android-alt"></i> Interactive Smart Phone</span>
+        <h2 class="text-4xl font-extrabold text-gray-800 dark:text-white">Swipe to Unlock | 12+ Apps</h2>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">Try our interactive phone with real apps and services</p>
+      </div>
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
         <!-- Phone Hardware -->
-        <div class="group relative flex justify-center h-[620px] w-[320px] border-[3px] border-gray-800 rounded-[48px] bg-gray-900 shadow-xl ring-1 ring-gray-900/50 transition-all duration-500 hover:shadow-2xl">
+        <div class="group relative flex justify-center h-[680px] w-[340px] border-[3px] border-gray-800 rounded-[48px] bg-gray-900 shadow-xl phone-frame transition-all duration-500 hover:shadow-2xl">
           <div class="absolute inset-0 rounded-[45px] border border-white/10 pointer-events-none"></div>
           <div class="relative h-full w-full overflow-hidden rounded-[42px] bg-black">
             <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 transition-transform duration-700 group-hover:scale-110"></div>
@@ -154,89 +484,710 @@
             <!-- Dynamic Screen Content -->
             <div class="absolute inset-0 z-20 flex flex-col text-white">
               <!-- Status Bar -->
-              <div class="flex justify-between px-5 pt-2 text-[10px] font-medium"><span x-text="currentTime"></span><div class="flex gap-1"><i class="fas fa-signal"></i><i class="fas fa-battery-full"></i></div></div>
+              <div class="flex justify-between px-5 pt-3 text-xs font-medium">
+                <span x-text="currentTime"></span>
+                <div class="flex gap-1.5">
+                  <i class="fas fa-signal"></i>
+                  <i class="fas fa-wifi"></i>
+                  <i class="fas fa-battery-full"></i>
+                </div>
+              </div>
               
-              <!-- LOCKSCREEN with swipe instruction -->
+              <!-- LOCKSCREEN -->
               <div x-show="phoneLocked && activePhoneScreen === 'lockscreen'" class="flex-1 flex flex-col items-center justify-center gap-4 px-4" x-cloak>
-                <i class="fas fa-lock text-4xl text-white/70 mb-2"></i>
-                <div class="text-5xl font-black" x-text="currentTime"></div>
-                <div class="text-sm font-medium" x-text="currentDate"></div>
-                <div @click="unlockPhone()" class="mt-8 bg-white/20 backdrop-blur-md px-8 py-3 rounded-full flex items-center gap-2 cursor-pointer hover:bg-white/30 transition">
+                <i class="fas fa-lock text-5xl text-white/70 mb-3"></i>
+                <div class="text-6xl font-black" x-text="currentTime"></div>
+                <div class="text-sm font-medium opacity-80" x-text="currentDate"></div>
+                <div @click="unlockPhone()" class="mt-10 bg-white/20 backdrop-blur-md px-8 py-3 rounded-full flex items-center gap-2 cursor-pointer hover:bg-white/30 transition border border-white/20">
                   <i class="fas fa-arrow-up"></i><span>Swipe Up to Unlock</span>
                 </div>
-                <div class="absolute bottom-8 w-32 h-1 bg-white/40 rounded-full"></div>
+                <div class="absolute bottom-10 w-32 h-1 bg-white/40 rounded-full"></div>
+                <!-- Emergency & Camera shortcuts -->
+                <div class="absolute bottom-6 left-6 text-xs opacity-60">Emergency</div>
+                <div class="absolute bottom-6 right-6 text-xs opacity-60">Camera</div>
               </div>
 
-              <!-- HOME SCREEN (Apps Grid) -->
+              <!-- HOME SCREEN -->
               <div x-show="!phoneLocked && activePhoneScreen === 'home'" class="flex-1 overflow-y-auto px-3 py-2 home-screen-fade" x-cloak>
-                <div class="grid grid-cols-4 gap-3 mt-4">
-                  <div @click="openApp('products')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-blue-500 shadow-lg flex items-center justify-center"><i class="fas fa-store text-white text-2xl"></i></div><span class="text-[10px] mt-1">Store</span></div>
-                  <div @click="openApp('repair')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-green-500 shadow-lg flex items-center justify-center"><i class="fas fa-tools text-white text-2xl"></i></div><span class="text-[10px] mt-1">Repair</span></div>
-                  <div @click="openApp('weather')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-cyan-500 shadow-lg flex items-center justify-center"><i class="fas fa-cloud-sun text-white text-2xl"></i></div><span class="text-[10px] mt-1">Weather</span></div>
-                  <div @click="openApp('camera')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-purple-500 shadow-lg flex items-center justify-center"><i class="fas fa-camera text-white text-2xl"></i></div><span class="text-[10px] mt-1">Camera</span></div>
-                  <div @click="window.open('https://weatheralt.netlify.app','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-yellow-500 shadow-lg flex items-center justify-center"><i class="fas fa-temperature-high text-white text-2xl"></i></div><span class="text-[10px] mt-1">WeatherAlt</span></div>
-                  <div @click="window.open('https://mumofoundation.netlify.app','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-pink-500 shadow-lg flex items-center justify-center"><i class="fas fa-hand-holding-heart text-white text-2xl"></i></div><span class="text-[10px] mt-1">Mumo FDN</span></div>
-                  <div @click="window.open('https://wa.me/254742313539','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-green-600 shadow-lg flex items-center justify-center"><i class="fab fa-whatsapp text-white text-2xl"></i></div><span class="text-[10px] mt-1">WhatsApp</span></div>
-                  <div @click="window.open('https://www.instagram.com','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 shadow-lg flex items-center justify-center"><i class="fab fa-instagram text-white text-2xl"></i></div><span class="text-[10px] mt-1">Instagram</span></div>
-                  <div @click="window.open('https://twitter.com','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-black shadow-lg flex items-center justify-center"><i class="fab fa-twitter text-white text-2xl"></i></div><span class="text-[10px] mt-1">X</span></div>
-                  <div @click="window.open('https://github.com','_blank')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-gray-700 shadow-lg flex items-center justify-center"><i class="fab fa-github text-white text-2xl"></i></div><span class="text-[10px] mt-1">GitHub</span></div>
-                  <div @click="window.open('tel:+254742313539')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-red-500 shadow-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white text-2xl"></i></div><span class="text-[10px] mt-1">Call</span></div>
-                  <div @click="openApp('about')" class="phone-app-icon flex flex-col items-center"><div class="w-14 h-14 rounded-xl bg-indigo-500 shadow-lg flex items-center justify-center"><i class="fas fa-code text-white text-2xl"></i></div><span class="text-[10px] mt-1">ALTECH</span></div>
+                <!-- Search Bar -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl px-3 py-2 mb-3 text-xs flex items-center gap-2">
+                  <i class="fas fa-search opacity-60"></i>
+                  <span class="opacity-60">Search apps...</span>
                 </div>
-                <div class="w-32 h-1 bg-white/30 rounded-full mx-auto mt-4 mb-2"></div>
+                
+                <!-- App Grid -->
+                <div class="grid grid-cols-4 gap-3">
+                  <div @click="openApp('products')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-store text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Store</span>
+                  </div>
+                  <div @click="openApp('repair')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-tools text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Repair</span>
+                  </div>
+                  <div @click="openApp('weather')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-cloud-sun text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Weather</span>
+                  </div>
+                  <div @click="openApp('camera')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-camera text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Camera</span>
+                  </div>
+                  <div @click="openInAppBrowser('https://weatheralt.netlify.app', 'WeatherAlt')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-temperature-high text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">WeatherAlt</span>
+                  </div>
+                  <div @click="openInAppBrowser('https://mumofoundation.netlify.app', 'Mumo Foundation')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-hand-holding-heart text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Mumo FDN</span>
+                  </div>
+                  <div @click="window.open('https://wa.me/254742313539','_blank')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-700 shadow-lg flex items-center justify-center">
+                      <i class="fab fa-whatsapp text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">WhatsApp</span>
+                  </div>
+                  <div @click="openInAppBrowser('https://www.instagram.com', 'Instagram')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 shadow-lg flex items-center justify-center">
+                      <i class="fab fa-instagram text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Instagram</span>
+                  </div>
+                  <div @click="openInAppBrowser('https://twitter.com', 'X')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-black shadow-lg flex items-center justify-center">
+                      <i class="fab fa-twitter text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">X</span>
+                  </div>
+                  <div @click="openInAppBrowser('https://github.com', 'GitHub')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gray-700 shadow-lg flex items-center justify-center">
+                      <i class="fab fa-github text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">GitHub</span>
+                  </div>
+                  <div @click="window.open('tel:+254742313539')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-red-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-phone-alt text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Call</span>
+                  </div>
+                  <div @click="openApp('developers')" class="phone-app-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg flex items-center justify-center">
+                      <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] mt-1">Developers</span>
+                  </div>
+                </div>
+                
+                <!-- Bottom Navigation Dots -->
+                <div class="flex justify-center gap-1 mt-6 mb-2">
+                  <div class="w-2 h-2 bg-white rounded-full"></div>
+                  <div class="w-2 h-2 bg-white/40 rounded-full"></div>
+                  <div class="w-2 h-2 bg-white/40 rounded-full"></div>
+                </div>
               </div>
 
               <!-- Products App -->
-              <div x-show="!phoneLocked && activePhoneScreen === 'products'" class="flex-1 overflow-y-auto px-3 py-2" x-cloak><div class="flex items-center gap-2 mb-2"><i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer"></i><span class="font-bold">Parts Store</span></div><template x-for="product in productsList"><div @click="viewProduct(product)" class="product-card-mini flex items-center gap-3 p-2 bg-white/10 rounded-xl mb-2 cursor-pointer"><img :src="product.image" class="w-12 h-12 rounded-lg object-cover"><div class="flex-1"><div class="text-sm font-semibold" x-text="product.name"></div><div class="text-xs text-green-300" x-text="product.price"></div></div><i class="fas fa-chevron-right"></i></div></template></div>
-              
-              <!-- Camera App (real camera access) -->
-              <div x-show="!phoneLocked && activePhoneScreen === 'camera'" class="flex-1 flex flex-col px-2 py-2" x-cloak>
-                <div class="flex items-center gap-2 mb-2"><i @click="goHome(); stopCamera()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer"></i><span class="font-bold">Camera</span></div>
-                <div class="bg-black rounded-xl overflow-hidden h-64 relative"><video id="phoneCameraVideo" autoplay playsinline class="w-full h-full object-cover"></video></div>
-                <div class="flex gap-3 justify-center mt-3"><button @click="startCamera()" class="bg-blue-500 px-4 py-2 rounded-full text-xs">Start Camera</button><button @click="takePhoto()" class="bg-green-500 px-4 py-2 rounded-full text-xs">Capture</button><button @click="stopCamera()" class="bg-red-500 px-4 py-2 rounded-full text-xs">Stop</button></div>
+              <div x-show="!phoneLocked && activePhoneScreen === 'products'" class="flex-1 overflow-y-auto px-3 py-2" x-cloak>
+                <div class="flex items-center gap-2 mb-3 sticky top-0 bg-black/50 backdrop-blur-sm py-2 rounded-lg">
+                  <i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold text-lg">Parts Store</span>
+                  <i class="fas fa-search ml-auto opacity-60"></i>
+                </div>
+                <template x-for="product in productsList">
+                  <div @click="viewProduct(product)" class="product-card-mini flex items-center gap-3 p-3 mb-2">
+                    <img :src="product.image" class="w-14 h-14 rounded-xl object-cover" :alt="product.name">
+                    <div class="flex-1">
+                      <div class="text-sm font-semibold" x-text="product.name"></div>
+                      <div class="text-xs text-green-300 font-bold" x-text="product.price"></div>
+                      <div class="text-[10px] opacity-60 mt-0.5">In stock • Free shipping</div>
+                    </div>
+                    <i class="fas fa-chevron-right opacity-60"></i>
+                  </div>
+                </template>
+                <div class="text-center text-xs opacity-60 mt-4 py-4 border-t border-white/10">
+                  <i class="fas fa-shield-alt mr-1"></i> Genuine OEM Parts
+                </div>
               </div>
 
-              <!-- Weather App (built-in) -->
-              <div x-show="!phoneLocked && activePhoneScreen === 'weather'" class="flex-1 px-4 py-4 text-center" x-cloak><div class="flex items-center gap-2 mb-3"><i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer"></i><span class="font-bold">Weather</span></div><i class="fas fa-sun text-6xl text-yellow-400"></i><div class="text-4xl font-black mt-2" x-text="weatherData.temp"></div><div class="text-lg" x-text="weatherData.condition"></div><div class="text-sm mt-1" x-text="weatherData.city"></div><button @click="fetchWeather()" class="mt-4 bg-white/20 px-4 py-2 rounded-full text-xs">Refresh</button></div>
+              <!-- Product Detail View -->
+              <div x-show="!phoneLocked && activePhoneScreen === 'productDetail'" class="flex-1 overflow-y-auto px-3 py-2" x-cloak>
+                <div class="flex items-center gap-2 mb-3">
+                  <i @click="closeProductDetail()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold">Product Details</span>
+                </div>
+                <template x-if="selectedProduct">
+                  <div>
+                    <img :src="selectedProduct.image" class="w-full h-48 object-cover rounded-xl mb-3">
+                    <h3 class="text-lg font-bold" x-text="selectedProduct.name"></h3>
+                    <p class="text-xl font-black text-green-400 mt-1" x-text="selectedProduct.price"></p>
+                    <p class="text-xs opacity-80 mt-2" x-text="selectedProduct.description"></p>
+                    <div class="mt-4 space-y-2">
+                      <button @click="orderViaWhatsApp(selectedProduct.name)" class="w-full bg-green-600 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                        <i class="fab fa-whatsapp mr-2"></i>Order via WhatsApp
+                      </button>
+                      <button @click="closeProductDetail()" class="w-full bg-white/20 py-2 rounded-lg hover:bg-white/30 transition">
+                        Continue Shopping
+                      </button>
+                    </div>
+                  </div>
+                </template>
+              </div>
+              
+              <!-- Camera App -->
+              <div x-show="!phoneLocked && activePhoneScreen === 'camera'" class="flex-1 flex flex-col px-2 py-2" x-cloak>
+                <div class="flex items-center gap-2 mb-2">
+                  <i @click="goHome(); stopCamera()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold">Camera</span>
+                  <i class="fas fa-flash ml-auto opacity-60"></i>
+                </div>
+                <div class="bg-black rounded-xl overflow-hidden h-72 relative">
+                  <video id="phoneCameraVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+                  <div x-show="!cameraActive" class="absolute inset-0 flex items-center justify-center bg-black/50">
+                    <i class="fas fa-camera text-4xl opacity-50"></i>
+                  </div>
+                </div>
+                <div class="flex gap-3 justify-center mt-4">
+                  <button @click="startCamera()" x-show="!cameraActive" class="bg-blue-600 px-6 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">
+                    <i class="fas fa-play mr-1"></i>Start
+                  </button>
+                  <button @click="takePhoto()" x-show="cameraActive" class="bg-white text-gray-800 w-12 h-12 rounded-full text-xl font-bold shadow-lg hover:scale-110 transition">
+                    <i class="fas fa-circle"></i>
+                  </button>
+                  <button @click="stopCamera()" x-show="cameraActive" class="bg-red-600 px-6 py-2 rounded-full text-sm font-semibold hover:bg-red-700 transition">
+                    <i class="fas fa-stop mr-1"></i>Stop
+                  </button>
+                </div>
+                <div class="flex justify-around mt-4 text-xs opacity-60">
+                  <span>Photo</span>
+                  <span>Video</span>
+                  <span>Portrait</span>
+                </div>
+              </div>
+
+              <!-- Weather App -->
+              <div x-show="!phoneLocked && activePhoneScreen === 'weather'" class="flex-1 px-4 py-4" x-cloak>
+                <div class="flex items-center gap-2 mb-3">
+                  <i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold">Weather</span>
+                  <i class="fas fa-map-marker-alt ml-auto opacity-60"></i>
+                </div>
+                <div class="text-center">
+                  <i class="fas fa-sun text-6xl text-yellow-400"></i>
+                  <div class="text-5xl font-black mt-3" x-text="weatherData.temp"></div>
+                  <div class="text-xl mt-1" x-text="weatherData.condition"></div>
+                  <div class="text-sm opacity-80 mt-1" x-text="weatherData.city"></div>
+                  <div class="text-xs opacity-60 mt-1">Wind: <span x-text="weatherData.wind"></span></div>
+                  <button @click="fetchWeather()" class="mt-6 bg-white/20 px-6 py-3 rounded-full text-sm hover:bg-white/30 transition">
+                    <i class="fas fa-sync-alt mr-2"></i>Refresh
+                  </button>
+                  
+                  <!-- 3-day forecast placeholder -->
+                  <div class="grid grid-cols-3 gap-2 mt-6">
+                    <div class="bg-white/10 rounded-lg p-2">
+                      <div class="text-xs">Tomorrow</div>
+                      <i class="fas fa-cloud-sun text-xl my-1"></i>
+                      <div class="text-sm">26°C</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-2">
+                      <div class="text-xs">Wed</div>
+                      <i class="fas fa-sun text-xl my-1"></i>
+                      <div class="text-sm">28°C</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-2">
+                      <div class="text-xs">Thu</div>
+                      <i class="fas fa-cloud-rain text-xl my-1"></i>
+                      <div class="text-sm">23°C</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Repair Form App -->
-              <div x-show="!phoneLocked && activePhoneScreen === 'repair'" class="flex-1 px-3 py-3" x-cloak><div class="flex items-center gap-2 mb-3"><i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer"></i><span class="font-bold">Request Repair</span></div><div class="bg-white/10 rounded-xl p-3 space-y-3"><input type="text" id="phoneRepairModel" placeholder="Device model" class="w-full bg-black/50 rounded-lg px-3 py-2 text-sm text-white"><input type="text" id="phoneRepairIssue" placeholder="Issue" class="w-full bg-black/50 rounded-lg px-3 py-2 text-sm text-white"><input type="tel" id="phoneRepairContact" placeholder="WhatsApp" class="w-full bg-black/50 rounded-lg px-3 py-2 text-sm text-white"><button @click="submitPhoneRepair()" class="bg-blue-500 w-full py-2 rounded-lg text-sm font-semibold">Submit</button></div></div>
+              <div x-show="!phoneLocked && activePhoneScreen === 'repair'" class="flex-1 px-3 py-3 overflow-y-auto" x-cloak>
+                <div class="flex items-center gap-2 mb-3 sticky top-0 bg-black/50 backdrop-blur-sm py-2 rounded-lg">
+                  <i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold">Request Repair</span>
+                </div>
+                <div class="bg-white/10 rounded-xl p-4 space-y-3">
+                  <div>
+                    <label class="text-xs opacity-70 mb-1 block">Device Model</label>
+                    <input type="text" id="phoneRepairModel" placeholder="e.g., iPhone 12 Pro" class="w-full bg-black/50 rounded-lg px-3 py-2.5 text-sm text-white border border-white/10 focus:border-blue-500 focus:outline-none">
+                  </div>
+                  <div>
+                    <label class="text-xs opacity-70 mb-1 block">Issue Description</label>
+                    <textarea id="phoneRepairIssue" placeholder="Describe the problem..." rows="3" class="w-full bg-black/50 rounded-lg px-3 py-2.5 text-sm text-white border border-white/10 focus:border-blue-500 focus:outline-none resize-none"></textarea>
+                  </div>
+                  <div>
+                    <label class="text-xs opacity-70 mb-1 block">WhatsApp Number</label>
+                    <input type="tel" id="phoneRepairContact" placeholder="+254 7XX XXX XXX" class="w-full bg-black/50 rounded-lg px-3 py-2.5 text-sm text-white border border-white/10 focus:border-blue-500 focus:outline-none">
+                  </div>
+                  <button @click="submitPhoneRepair()" class="bg-gradient-to-r from-blue-600 to-blue-700 w-full py-3 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition shadow-lg">
+                    <i class="fab fa-whatsapp mr-2"></i>Submit Request
+                  </button>
+                  <p class="text-[10px] text-center opacity-60">Response within 15 minutes</p>
+                </div>
+              </div>
 
-              <!-- About ALTECH -->
-              <div x-show="!phoneLocked && activePhoneScreen === 'about'" class="flex-1 px-4 py-4 text-center" x-cloak><div class="flex items-center gap-2 mb-3"><i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer"></i><span class="font-bold">ALTECH Studio</span></div><div class="bg-white/10 rounded-2xl p-4"><i class="fab fa-algolia text-5xl text-blue-400"></i><p class="text-sm mt-2">Innovative software & repair solutions. Crafted for Quickfix.</p><p class="text-xs mt-3">📞 +254 706 389 206</p><div class="flex justify-center gap-4 mt-3"><i class="fab fa-twitter text-xl cursor-pointer" @click="window.open('https://twitter.com','_blank')"></i><i class="fab fa-github text-xl cursor-pointer" @click="window.open('https://github.com','_blank')"></i></div></div></div>
+              <!-- In-App Browser -->
+              <div x-show="!phoneLocked && activePhoneScreen === 'browser'" class="flex-1 flex flex-col" x-cloak>
+                <div class="in-app-browser flex items-center gap-2 p-2 bg-gray-900/90">
+                  <i @click="closeBrowser()" class="fas fa-times text-white p-2 cursor-pointer hover:bg-white/10 rounded-full transition"></i>
+                  <div class="flex-1 flex items-center gap-1 bg-white/10 rounded-lg px-3 py-1.5">
+                    <i class="fas fa-lock text-green-400 text-xs"></i>
+                    <span class="text-xs truncate" x-text="inAppBrowser.url"></span>
+                  </div>
+                  <i class="fas fa-ellipsis-v text-white p-2 cursor-pointer hover:bg-white/10 rounded-full transition"></i>
+                </div>
+                <div x-show="inAppBrowser.loading" class="flex-1 flex items-center justify-center bg-gray-900">
+                  <div class="loading-spinner"></div>
+                </div>
+                <iframe x-show="!inAppBrowser.loading" :src="inAppBrowser.url" class="flex-1 w-full border-0"></iframe>
+              </div>
+
+              <!-- Developers App (Enhanced) -->
+              <div x-show="!phoneLocked && activePhoneScreen === 'developers'" class="flex-1 overflow-y-auto px-3 py-2" x-cloak>
+                <div class="flex items-center gap-2 mb-3 sticky top-0 bg-black/50 backdrop-blur-sm py-2 rounded-lg">
+                  <i @click="goHome()" class="fas fa-arrow-left text-white bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/30 transition"></i>
+                  <span class="font-bold">ALTECH Dev</span>
+                  <i class="fas fa-share ml-auto opacity-60"></i>
+                </div>
+                
+                <!-- Company Header -->
+                <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-xl p-4 mb-3">
+                  <div class="flex items-center gap-2 mb-2">
+                    <i class="fab fa-algolia text-3xl"></i>
+                    <div>
+                      <h3 class="font-bold text-lg" x-text="developerInfo.company"></h3>
+                      <p class="text-xs opacity-80" x-text="developerInfo.website"></p>
+                    </div>
+                  </div>
+                  <p class="text-xs opacity-90">Founded <span x-text="developerInfo.founded"></span> • Enterprise Software Solutions</p>
+                </div>
+                
+                <!-- Team Section -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-sm mb-2 flex items-center gap-2">
+                    <i class="fas fa-users text-blue-400"></i>Core Team
+                  </h4>
+                  <div class="space-y-2">
+                    <template x-for="member in developerInfo.team">
+                      <div class="bg-white/10 rounded-lg p-3">
+                        <div class="flex items-center gap-2">
+                          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold">
+                            <span x-text="member.name.split(' ').map(n => n[0]).join('')"></span>
+                          </div>
+                          <div class="flex-1">
+                            <p class="text-sm font-semibold" x-text="member.name"></p>
+                            <p class="text-xs opacity-70" x-text="member.role"></p>
+                          </div>
+                        </div>
+                        <p class="text-xs opacity-60 mt-1 ml-10" x-text="member.expertise"></p>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                
+                <!-- Projects -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-sm mb-2 flex items-center gap-2">
+                    <i class="fas fa-rocket text-green-400"></i>Our Projects
+                  </h4>
+                  <div class="grid grid-cols-2 gap-2">
+                    <template x-for="project in developerInfo.projects">
+                      <div @click="project.url !== '#' ? openInAppBrowser(project.url, project.name) : null" 
+                           class="bg-white/10 rounded-lg p-2 cursor-pointer hover:bg-white/20 transition">
+                        <i class="fas fa-globe text-xs opacity-60 mb-1"></i>
+                        <p class="text-xs font-semibold truncate" x-text="project.name"></p>
+                        <p class="text-[10px] opacity-60 truncate" x-text="project.description"></p>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                
+                <!-- Tech Stack -->
+                <div class="mb-4">
+                  <h4 class="font-semibold text-sm mb-2 flex items-center gap-2">
+                    <i class="fas fa-code text-yellow-400"></i>Tech Stack
+                  </h4>
+                  <div class="flex flex-wrap gap-1.5">
+                    <template x-for="skill in developerInfo.skills">
+                      <span class="bg-white/10 px-2.5 py-1 rounded-full text-[10px] font-medium" x-text="skill"></span>
+                    </template>
+                  </div>
+                </div>
+                
+                <!-- Contact & Social -->
+                <div class="bg-white/10 rounded-xl p-3 mb-3">
+                  <h4 class="font-semibold text-sm mb-2">Contact</h4>
+                  <div class="space-y-1.5 text-xs">
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-phone w-4 text-green-400"></i>
+                      <span x-text="developerInfo.contact.phone"></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-envelope w-4 text-blue-400"></i>
+                      <span x-text="developerInfo.contact.email"></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i class="fas fa-map-marker-alt w-4 text-red-400"></i>
+                      <span x-text="developerInfo.contact.location"></span>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 mt-3">
+                    <i class="fab fa-github text-xl cursor-pointer hover:text-gray-300" @click="openInAppBrowser('https://github.com', 'GitHub')"></i>
+                    <i class="fab fa-linkedin text-xl cursor-pointer hover:text-gray-300" @click="openInAppBrowser('https://linkedin.com', 'LinkedIn')"></i>
+                    <i class="fab fa-twitter text-xl cursor-pointer hover:text-gray-300" @click="openInAppBrowser('https://twitter.com', 'X')"></i>
+                  </div>
+                </div>
+                
+                <!-- Portfolio Link -->
+                <button @click="openInAppBrowser('https://altechit.netlify.app', 'ALTECH Portfolio')" 
+                        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 py-3 rounded-lg text-sm font-semibold hover:from-indigo-700 hover:to-purple-700 transition mb-2">
+                  <i class="fas fa-external-link-alt mr-2"></i>Visit Developer Portfolio
+                </button>
+              </div>
             </div>
           </div>
           <!-- Dynamic Island / Notch -->
-          <div class="absolute top-[12px] left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-full z-30 flex items-center justify-center"><div class="w-14 h-3 bg-gray-800 rounded-full"></div></div>
-          <span class="absolute -right-[4px] top-20 h-10 w-[3px] rounded-r-md bg-gray-700"></span><span class="absolute -left-[4px] top-16 h-6 w-[3px] rounded-l-md bg-gray-700"></span>
+          <div class="absolute top-[12px] left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-full z-30 flex items-center justify-center">
+            <div class="w-16 h-4 bg-gray-800 rounded-full"></div>
+          </div>
+          <!-- Side Buttons -->
+          <span class="absolute -right-[4px] top-24 h-12 w-[3px] rounded-r-md bg-gray-700"></span>
+          <span class="absolute -right-[4px] top-40 h-12 w-[3px] rounded-r-md bg-gray-700"></span>
+          <span class="absolute -left-[4px] top-20 h-8 w-[3px] rounded-l-md bg-gray-700"></span>
+          <span class="absolute -left-[4px] top-32 h-8 w-[3px] rounded-l-md bg-gray-700"></span>
         </div>
 
         <!-- Info Panel -->
-        <div class="max-w-md bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl" data-aos="fade-left"><div class="flex items-center gap-3 border-b pb-4 border-gray-200 dark:border-gray-700"><i class="fab fa-algolia text-3xl text-blue-500"></i><h3 class="text-2xl font-bold text-gray-800 dark:text-white">ALTECH Developers</h3></div><p class="mt-3 text-gray-600 dark:text-gray-300"><strong>10+ Apps inside phone:</strong> Camera (real access), Weather, Store, Repair form, Socials, WeatherAlt.netlify.app, MumoFoundation.netlify.app. Swipe up on lockscreen to unlock.</p><canvas id="repairStatsChart" width="300" height="150" class="mt-5"></canvas><p class="text-xs text-center text-gray-500 mt-2">Monthly repairs trend</p></div>
+        <div class="max-w-md bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl" data-aos="fade-left">
+          <div class="flex items-center gap-3 border-b pb-4 border-gray-200 dark:border-gray-700">
+            <i class="fab fa-algolia text-3xl text-blue-500"></i>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-800 dark:text-white">ALTECH Developers</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Innovative Software Solutions</p>
+            </div>
+          </div>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            <strong>12+ Apps inside phone:</strong> Camera (real access), Weather, Store, Repair form, Social media, WeatherAlt, MumoFoundation, and more. All apps open within the phone interface.
+          </p>
+          <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p class="text-sm text-blue-800 dark:text-blue-300">
+              <i class="fas fa-info-circle mr-1"></i>
+              Swipe up on lockscreen to unlock. All external websites open in the in-app browser for seamless experience.
+            </p>
+          </div>
+          <canvas id="repairStatsChart" width="300" height="150" class="mt-5"></canvas>
+          <p class="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">Monthly repairs trend (2024)</p>
+          
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-3 gap-2 mt-4">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">500+</div>
+              <div class="text-xs text-gray-500">Repairs</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 dark:text-green-400">4.9★</div>
+              <div class="text-xs text-gray-500">Rating</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">24/7</div>
+              <div class="text-xs text-gray-500">Support</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Featured Products Carousel -->
-    <section id="featuredSection" class="mt-24" data-aos="fade-up"><div class="text-center mb-10"><span class="text-blue-600 font-semibold"><i class="fas fa-box-open"></i> Premium Components</span><h2 class="text-4xl font-extrabold text-gray-800 dark:text-white">Genuine & OEM Parts</h2></div><div class="swiper custom-swiper rounded-2xl overflow-hidden shadow-2xl"><div class="swiper-wrapper"><div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/1D976C/white?text=Xiaomi+14T+LCD"></div><div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/f7971e/white?text=Samsung+A36+Frame"></div><div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/5577ee/white?text=Tecno+Camon+40+Pro"></div><div class="swiper-slide"><img class="w-full h-80 object-cover" src="https://placehold.co/800x400/FF6B6B/white?text=Villaon+V40+LCD"></div></div><div class="swiper-pagination"></div><div class="swiper-button-prev"></div><div class="swiper-button-next"></div></div></section>
+    <section id="featuredSection" class="mt-24" data-aos="fade-up">
+      <div class="text-center mb-10">
+        <span class="text-blue-600 font-semibold"><i class="fas fa-box-open"></i> Premium Components</span>
+        <h2 class="text-4xl font-extrabold text-gray-800 dark:text-white">Genuine & OEM Parts</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full mt-4"></div>
+      </div>
+      <div class="swiper custom-swiper rounded-2xl overflow-hidden shadow-2xl">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide relative">
+            <img class="w-full h-96 object-cover" src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=800" alt="Phone Repair">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-white font-bold text-xl">Premium LCD Displays</h3>
+              <p class="text-white/80 text-sm">OEM quality, 1-year warranty</p>
+            </div>
+          </div>
+          <div class="swiper-slide relative">
+            <img class="w-full h-96 object-cover" src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800" alt="Phone Repair">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-white font-bold text-xl">Battery Replacement</h3>
+              <p class="text-white/80 text-sm">High-capacity genuine cells</p>
+            </div>
+          </div>
+          <div class="swiper-slide relative">
+            <img class="w-full h-96 object-cover" src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=800" alt="Phone Repair">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-white font-bold text-xl">Charging Port Repair</h3>
+              <p class="text-white/80 text-sm">Fast and reliable service</p>
+            </div>
+          </div>
+          <div class="swiper-slide relative">
+            <img class="w-full h-96 object-cover" src="https://images.unsplash.com/photo-1603791239531-1dda55e194a6?w=800" alt="Phone Repair">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+              <h3 class="text-white font-bold text-xl">Water Damage Recovery</h3>
+              <p class="text-white/80 text-sm">Professional cleaning & repair</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev !text-white"></div>
+        <div class="swiper-button-next !text-white"></div>
+      </div>
+    </section>
 
     <!-- Main Repair Form -->
-    <section id="letsfix" class="mt-24 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12" data-aos="flip-up"><div class="max-w-3xl mx-auto text-center"><i class="fas fa-clipboard-list text-4xl text-blue-600"></i><h2 class="text-3xl md:text-4xl font-black mt-3 text-gray-800 dark:text-white">Let's Fix Your Device</h2></div><form id="repairRequestForm" class="mt-8 space-y-6 max-w-2xl mx-auto"><div class="grid md:grid-cols-2 gap-5"><input type="text" id="fullName" placeholder="Full Name" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white"><input type="text" id="location" placeholder="Location" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white"><input type="text" id="problem" placeholder="Problem" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white"><input type="tel" id="phoneNumber" placeholder="WhatsApp Number" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white"></div><button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> Send Request</button></form></section>
+    <section id="letsfix" class="mt-24 bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12" data-aos="flip-up">
+      <div class="max-w-3xl mx-auto text-center">
+        <i class="fas fa-clipboard-list text-4xl text-blue-600"></i>
+        <h2 class="text-3xl md:text-4xl font-black mt-3 text-gray-800 dark:text-white">Let's Fix Your Device</h2>
+        <p class="text-gray-600 dark:text-gray-400 mt-2">Fill the form below and we'll get back to you within 15 minutes</p>
+      </div>
+      <form id="repairRequestForm" class="mt-8 space-y-6 max-w-2xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-5">
+          <input type="text" id="fullName" placeholder="Full Name" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <input type="text" id="location" placeholder="Location" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <input type="text" id="problem" placeholder="Device & Problem" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <input type="tel" id="phoneNumber" placeholder="WhatsApp Number" class="border rounded-xl px-4 py-3 dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <button type="submit" class="w-full btn-primary text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-2">
+          <i class="fab fa-whatsapp"></i> Send Repair Request
+        </button>
+        <p class="text-xs text-center text-gray-500 dark:text-gray-400">
+          <i class="fas fa-shield-alt mr-1"></i>Your information is secure and encrypted
+        </p>
+      </form>
+    </section>
 
-    <!-- Map -->
-    <section id="locationSection" class="mt-24" data-aos="fade-left"><div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg"><iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske" style="border:0;" allowfullscreen=""></iframe></div></section>
+    <!-- Map Section -->
+    <section id="locationSection" class="mt-24" data-aos="fade-left">
+      <div class="text-center mb-6">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-white">
+          <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Visit Our Shop
+        </h3>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg">
+        <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3997.5!2d36.8218!3d-1.2862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a2b3c5f4a1b%3A0xabcdef1234567890!2sMunyu%20Road%2C%20Nairobi%20CBD!5e0!3m2!1sen!2ske!4v1720456789012!5m2!1sen!2ske" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
   </main>
 
   <!-- Professional Footer -->
-  <footer class="footer-glass mt-16 py-10 border-t"><div class="max-w-7xl mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-4 gap-8"><div><div class="flex items-center gap-2"><i class="fas fa-tools text-2xl text-blue-600"></i><span class="text-xl font-bold text-gray-800 dark:text-white">QUICKFIX</span></div><p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Professional phone repair with certified parts, rapid turnaround in Nairobi CBD.</p><div class="flex gap-4 mt-4"><i class="fab fa-twitter text-gray-500 hover:text-blue-500 cursor-pointer text-xl"></i><i class="fab fa-instagram text-gray-500 hover:text-pink-500 cursor-pointer text-xl"></i><i class="fab fa-facebook text-gray-500 hover:text-blue-600 cursor-pointer text-xl"></i></div></div><div><h4 class="font-bold text-gray-800 dark:text-white mb-4">Services</h4><ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400"><li>Screen Replacement</li><li>Battery Service</li><li>Water Damage Repair</li><li>Board Level Fix</li></ul></div><div><h4 class="font-bold text-gray-800 dark:text-white mb-4">Contact</h4><ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400"><li><i class="fas fa-phone-alt mr-2 w-4"></i> +254 742 313 539</li><li><i class="fab fa-whatsapp mr-2 text-green-500"></i> +254 716 868 013</li><li><i class="far fa-envelope mr-2"></i> repair@quickfix.co.ke</li></ul></div><div><h4 class="font-bold text-gray-800 dark:text-white mb-4">Location</h4><address class="not-italic text-sm text-gray-600 dark:text-gray-400">Munyu Road, Nairobi CBD<br>Mon-Sat: 9am - 7pm<br>Sunday: Closed</address></div></div><div class="border-t border-gray-200 dark:border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">© 2025 Quickfix — Product of <span class="font-bold text-blue-600">ALTECH Software Developers</span> | All rights reserved</div></div></footer>
+  <footer class="footer-glass mt-16 py-10 border-t">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-tools text-2xl text-blue-600"></i>
+            <span class="text-xl font-bold text-gray-800 dark:text-white">QUICKFIX</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Professional phone repair with certified parts, rapid turnaround in Nairobi CBD.</p>
+          <div class="flex gap-4 mt-4">
+            <i class="fab fa-twitter text-gray-500 hover:text-blue-500 cursor-pointer text-xl transition"></i>
+            <i class="fab fa-instagram text-gray-500 hover:text-pink-500 cursor-pointer text-xl transition"></i>
+            <i class="fab fa-facebook text-gray-500 hover:text-blue-600 cursor-pointer text-xl transition"></i>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 dark:text-white mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li><i class="fas fa-chevron-right text-xs mr-1 text-blue-500"></i>Screen Replacement</li>
+            <li><i class="fas fa-chevron-right text-xs mr-1 text-blue-500"></i>Battery Service</li>
+            <li><i class="fas fa-chevron-right text-xs mr-1 text-blue-500"></i>Water Damage Repair</li>
+            <li><i class="fas fa-chevron-right text-xs mr-1 text-blue-500"></i>Board Level Fix</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 dark:text-white mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li><i class="fas fa-phone-alt mr-2 w-4"></i> +254 742 313 539</li>
+            <li><i class="fab fa-whatsapp mr-2 text-green-500"></i> +254 716 868 013</li>
+            <li><i class="far fa-envelope mr-2"></i> repair@quickfix.co.ke</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-gray-800 dark:text-white mb-4">Location</h4>
+          <address class="not-italic text-sm text-gray-600 dark:text-gray-400">
+            Munyu Road, Nairobi CBD<br>
+            Mon-Sat: 9am - 7pm<br>
+            Sunday: Closed
+          </address>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+              <i class="fas fa-circle text-[8px] mr-1"></i>Open Now
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-200 dark:border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
+        © 2025 Quickfix — Product of <span class="font-bold text-blue-600">ALTECH Software Developers</span> | All rights reserved
+      </div>
+    </div>
+  </footer>
   
-  <a class="fixed bottom-6 left-6 bg-gray-800/80 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-full flex items-center gap-2 z-50" href="https://api.whatsapp.com/send?phone=254706389206" target="_blank"><i class="fab fa-codepen"></i> Dev Support</a>
+  <!-- Developer Support Button -->
+  <a class="fixed bottom-24 left-6 bg-gray-800/90 backdrop-blur-sm text-white text-xs px-4 py-2.5 rounded-full flex items-center gap-2 z-50 shadow-lg hover:scale-105 transition" 
+     href="https://api.whatsapp.com/send?phone=254706389206" target="_blank">
+    <i class="fab fa-codepen text-blue-400"></i> Developer Support
+  </a>
 
   <script>
-    new Swiper('.custom-swiper', { loop: true, autoplay: { delay: 4000 }, pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' } });
-    document.getElementById("repairRequestForm").addEventListener("submit", function(e) { e.preventDefault(); const name=document.getElementById("fullName").value, loc=document.getElementById("location").value, prob=document.getElementById("problem").value, phone=document.getElementById("phoneNumber").value; if(!name||!loc||!prob||!phone) return alert("Fill all fields"); window.open(`https://wa.me/254742313539?text=REPAIR%20REQUEST%0AName:${name}%0ALocation:${loc}%0AIssue:${prob}%0APhone:${phone}`,'_blank'); this.reset(); });
-    new Chart(document.getElementById('repairStatsChart').getContext('2d'), { type: 'line', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], datasets: [{ label: 'Repairs', data: [42, 58, 67, 83, 97, 112], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.3 }] }, options: { responsive: true } });
+    // Initialize Swiper
+    new Swiper('.custom-swiper', { 
+      loop: true, 
+      autoplay: { delay: 4000, disableOnInteraction: false }, 
+      pagination: { el: '.swiper-pagination', clickable: true }, 
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      effect: 'slide',
+      speed: 600
+    });
+    
+    // Repair Form Handler
+    document.getElementById("repairRequestForm").addEventListener("submit", function(e) { 
+      e.preventDefault(); 
+      const name = document.getElementById("fullName").value.trim();
+      const loc = document.getElementById("location").value.trim();
+      const prob = document.getElementById("problem").value.trim();
+      const phone = document.getElementById("phoneNumber").value.trim();
+      
+      if(!name || !loc || !prob || !phone) {
+        alert("Please fill all fields to submit your repair request.");
+        return;
+      }
+      
+      const message = `REPAIR REQUEST%0A%0A👤 Name: ${name}%0A📍 Location: ${loc}%0A🔧 Issue: ${prob}%0A📞 Phone: ${phone}`;
+      window.open(`https://wa.me/254742313539?text=${message}`,'_blank'); 
+      this.reset(); 
+      
+      // Show success feedback
+      alert("Request sent! We'll contact you shortly via WhatsApp.");
+    });
+    
+    // Initialize Chart with better styling
+    const ctx = document.getElementById('repairStatsChart').getContext('2d');
+    new Chart(ctx, { 
+      type: 'line', 
+      data: { 
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+        datasets: [{ 
+          label: 'Repairs Completed', 
+          data: [42, 58, 67, 83, 97, 112, 145, 168, 189, 210, 245, 278], 
+          borderColor: '#3b82f6', 
+          backgroundColor: 'rgba(59,130,246,0.1)', 
+          fill: true, 
+          tension: 0.4,
+          borderWidth: 3,
+          pointBackgroundColor: '#3b82f6',
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6
+        }] 
+      }, 
+      options: { 
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0,0,0,0.8)',
+            titleColor: '#fff',
+            bodyColor: '#fff'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0,0,0,0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      } 
+    });
+    
+    // Refresh AOS
     AOS.refresh();
+    
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.service-card-modern', {
+      scrollTrigger: {
+        trigger: '#services',
+        start: 'top 80%'
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2
+    });
   </script>
-  <style>.custom-swiper .swiper-button-prev, .custom-swiper .swiper-button-next { background: rgba(0,0,0,0.5); border-radius: 40px; width: 42px; height: 42px; }</style>
+  <style>
+    .custom-swiper .swiper-button-prev, 
+    .custom-swiper .swiper-button-next { 
+      background: rgba(0,0,0,0.5); 
+      border-radius: 40px; 
+      width: 42px; 
+      height: 42px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+    .custom-swiper .swiper-button-prev:hover, 
+    .custom-swiper .swiper-button-next:hover {
+      background: rgba(0,0,0,0.7);
+      transform: scale(1.1);
+    }
+    .custom-swiper .swiper-button-prev::after,
+    .custom-swiper .swiper-button-next::after {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .custom-swiper .swiper-pagination-bullet {
+      background: white;
+      opacity: 0.7;
+    }
+    .custom-swiper .swiper-pagination-bullet-active {
+      background: #3b82f6;
+      opacity: 1;
+    }
+    
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Focus styles */
+    *:focus-visible {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  </style>
 </body>
-                                                                                                      </html>
+  </html>                                                                                            </html>
